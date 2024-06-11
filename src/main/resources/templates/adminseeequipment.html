@@ -1,47 +1,122 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Frontpage</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+<title>adminsseestudents</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
+
+
 <body>
-
 <header>
-
     <div class="logocontainer">
         <a href="frontpage.html" th:href="@{/}">
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-
     <div class="nav-links"> <!-- Moved nav-links to the right side -->
-        <a href="login.html">Login</a>
-        <a href="adminseebookings.html">Admin</a>
+        <p th:if="${session.currentUser !=null}">
+            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>
+        </p>
+        <p><span th:text="${session.currentUser.email}"></span></p>
     </div>
 </header>
 
-<!--<table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>Equipment</th>-->
-<!--        <th>acction</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="equipment: ${equipmentList}">-->
-<!--        <td th:text="${equipment.equipment_id}"></td>-->
-<!--        <td>-->
-<!--            <button type="submit">Knap</button>-->
-<!--        </td>-->
+<h1>Velkommen til adminsiden <span th:text="${session.currentUser.email}"></span></h1>
 
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
 
-<h3>AdminSeeEquipment:</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NpZ-MjUrvN0?start=5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="adminbuttons_right">
+
+
+    <form class="adminbuttons" method="get">
+        <a href="adminseebookings.html">
+            <button type="button" class="adminbuttons">Bookinger</button>
+        </a>
+    </form>
+    <form class="adminbuttons" method="get">
+        <a href="adminSeeStudents.html">
+            <button type="button" class="adminbuttons">Brugere</button>
+        </a>
+    </form>
+</div>
+
+<div class="containercolumns">
+
+    <!-- Left Column with Images -->
+    <div class="column left">
+        <div class="adminbuttons_centered">
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Equipment</th>
+                    <th>acction</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="equipment: ${equipmentList}">
+                    <td th:text="${equipment.equipment_id}"></td>
+                    <td>
+                        <button type="submit">Knap</button>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Middle Column with Admin Buttons -->
+    <div class="column middle">
+        <table>
+            <tr>
+                <th>Company</th>
+                <th>Contact</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>Centro comercial Moctezuma</td>
+                <td>Francisco Chang</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>Ernst Handel</td>
+                <td>Roland Mendel</td>
+                <td>Austria</td>
+            </tr>
+            <tr>
+                <td>Island Trading</td>
+                <td>Helen Bennett</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>Laughing Bacchus Winecellars</td>
+                <td>Yoshi Tannamuri</td>
+                <td>Canada</td>
+            </tr>
+            <tr>
+                <td>Magazzini Alimentari Riuniti</td>
+                <td>Giovanni Rovelli</td>
+                <td>Italy</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- Right Column with Images -->
+    <div class="column right">
+        <div class="image-container">
+            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>
+            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="75%" alt="Makerlab"/>
+        </div>
+    </div>
+</div>
 
 <footer class="footer-container">
     <div class="footer-column">

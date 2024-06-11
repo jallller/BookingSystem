@@ -125,6 +125,21 @@ h1 {
     background-color: #3e26de;
 }
 
+.adminbuttonspages button{
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #1B215A;
+    color: white;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.adminbuttonspages button:hover{
+    background-color: #3e26de;
+
+}
+
 /* Logo centering */
 .logo {
     text-align: center;
@@ -317,6 +332,10 @@ body {
 .adminbuttons_centered {
     text-align: center;
 }
+.adminbuttons_right{
+    text-align: right;
+}
+
 
 .image-container {
     display: flex;

@@ -25,14 +25,17 @@ public class UserController {
 //        app.post("goToInfo", ctx -> goToInfo(ctx));
 //        app.get("createuser", ctx -> ctx.render("createuser.html"));
 //        app.post("createuser", ctx -> ctx.render("createuser.html"));
-        app.post("createuser", ctx -> ctx.render("createuser.html"));
+        //app.post("createuser", ctx -> ctx.render("createuser.html"));
 //        app.post("createuser", ctx -> createUser(ctx, connectionPool));
         //app.post("getAllUsers", ctx -> getAllUsers(ctx, connectionPool));
 //        app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
         app.get("adminseeequipment.html", ctx -> ctx.render("adminseeequipment.html"));
         app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
         app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
+        app.post("createuser", ctx -> createUser(ctx,connectionPool));
+        app.get("createuser.html", ctx -> ctx.render("createuser.html")); //Lander på siden
     }
+
 
     private static void createUser(Context ctx, ConnectionPool connectionPool) {
         //Hent formparametre
@@ -48,7 +51,7 @@ public class UserController {
             try {
                 UserMapper.createUser(email, password1, name, phone, roles, connectionPool);
                 ctx.attribute("message", "Brugeren oprettet med brugernavn: " + email + ". Log venligst på");
-                ctx.render("frontpage.html");
+                ctx.render("frontpage.html"); //Send til adminside
 
             } catch (DatabaseException e) {
                 ctx.attribute("message", "Brugernavnet er allerede i brug");
@@ -88,7 +91,7 @@ public class UserController {
             if (user.getRoles().equals("admin")) {
                 ctx.render("admin.html");
             } else {
-                ctx.render("frontpage.html"); //Server error booking.html
+                ctx.render("booking.html"); //Server error booking.html
             }
 
 
