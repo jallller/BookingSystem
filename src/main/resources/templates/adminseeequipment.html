@@ -109,6 +109,20 @@
     </div>
 
 
+    <form method="post" class="login-form" , id="grey-box">
+        <input type="text" name="equipment_id" placeholder="Id"/><br>
+        <input type="text" name="equipment_name" placeholder="Navn"/><br>
+        <input type="text" name="description" placeholder="Beskrivelse"/><br>
+        <input type="text" name="room_number" placeholder="Rum"/><br>
+        <button type="submit" formaction="/createequipment">Opret udstyr</button>
+    </form>
+
+    <form method="post" class="login-form">
+        <input type="text" name="room_number" placeholder="Rumnr"/><br>
+        <input type="text" name="description" placeholder="Beskrivelse"/><br>
+        <button type="submit" formaction="/createroom">Opret rum</button>
+    </form>
+
     <!-- Right Column with Images -->
     <div class="column right">
         <div class="image-container">

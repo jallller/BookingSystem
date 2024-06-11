@@ -34,6 +34,7 @@ public class UserController {
         app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
         app.post("createuser", ctx -> createUser(ctx,connectionPool));
         app.get("createuser.html", ctx -> ctx.render("createuser.html")); //Lander på siden
+
     }
 
 
