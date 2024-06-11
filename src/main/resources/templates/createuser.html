@@ -1,0 +1,219 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<title>Frontpage</title>-->
+<!--<meta charset="UTF-8">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<header>-->
+
+<!--    <div class="logocontainer">-->
+<!--        <a href="frontpage.html" th:href="@{/}">-->
+<!--            <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>-->
+<!--        </a>-->
+<!--    </div>-->
+
+<!--    <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
+<!--        <a href="login.html">Login</a>-->
+<!--        <a href="adminseebookings.html">Admin</a>-->
+<!--    </div>-->
+<!--</header>-->
+
+<!--<div class="containercolumns">-->
+<!--    <div class="column left">-->
+
+<!--        <form method="post" class="login-form" , id="grey-box">-->
+<!--            <input type="email" name="email" placeholder="Email"/><br>-->
+<!--            <input type="password" name="password1" placeholder="Kodeord"/><br>-->
+<!--            <input type="password" name="password2" placeholder="Gentag kodeord"/><br>-->
+<!--            <input type="text" name="name" placeholder="Navn"/><br>-->
+<!--            <input type="text" name="phone" placeholder="Telefonnr"/><br>-->
+<!--            <input type="text" name="roles" placeholder="Rolle">-->
+<!--            <button type="submit" formaction="/createuser">Opret bruger</button>-->
+<!--        </form>-->
+
+<!--        <div th:if="${session.currentUser != null }">-->
+<!--            <span th:text="${session.currentUser.username}"> </span> |-->
+<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="column middle">-->
+<!--        <h1>Hej</h1>-->
+<!--    </div>-->
+
+<!--    <div class="column left">-->
+<!--        <h2>Hu</h2>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<footer class="footer-container">-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Sociale medier</h3>-->
+<!--        <p><a href="https://www.facebook.com/copenhagenbusinessacademy">Facebook</a></p>-->
+<!--        <p><a href="https://www.instagram.com/cphbusiness/">Instagram</a></p>-->
+<!--    </div>-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Kontakt:</h3>-->
+<!--        <p>Hjælp : kontakt@cphbusiness.dk</p>-->
+<!--        <p>It hjælp : helpdesk@cphbusiness.dk</p>-->
+<!--    </div>-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Adresse</h3>-->
+<!--        <p>Firskovvej 18 2800Kongens Lyngby</p>-->
+<!--        <p>Mandag-torsdag 8.00 - 15.30</p>-->
+<!--    </div>-->
+<!--</footer>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Frontpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<header>
+
+    <div class="logocontainer">
+        <a href="frontpage.html" th:href="@{/}">
+            <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
+        </a>
+    </div>
+
+    <div class="nav-links"> <!-- Moved nav-links to the right side -->
+        <a href="login.html">Login</a>
+        <a href="adminseebookings.html">Admin</a>
+    </div>
+</header>
+
+<h1>Velkommen til cph business booking system</h1>
+
+<div class="containercolumns">
+    <!-- Left Column with Login Form -->
+
+
+    <div class="column left">
+        <h3>Opret bruger</h3><br>
+        <form method="post" class="login-form" , id="grey-box">
+            <input type="email" name="email" placeholder="Email"/><br>
+            <input type="password" name="password1" placeholder="Kodeord"/><br>
+            <input type="password" name="password2" placeholder="Gentag kodeord"/><br>
+            <input type="text" name="name" placeholder="Navn"/><br>
+            <input type="text" name="phone" placeholder="Telefonnr"/><br>
+            <input type="text" name="roles" placeholder="Rolle">
+            <button type="submit" formaction="/createuser">Opret bruger</button>
+        </form>
+        <!-- Message display if needed -->
+        <div><p th:text="${message}"></p></div>
+    </div>
+
+
+
+    <!-- Middle Column with Placeholder Text -->
+    <div class="column middle">
+        <h3>Some text</h3>
+        <table>
+            <tr>
+                <th>Company</th>
+                <th>Contact</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>Centro comercial Moctezuma</td>
+                <td>Francisco Chang</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>Ernst Handel</td>
+                <td>Roland Mendel</td>
+                <td>Austria</td>
+            </tr>
+            <tr>
+                <td>Island Trading</td>
+                <td>Helen Bennett</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>Laughing Bacchus Winecellars</td>
+                <td>Yoshi Tannamuri</td>
+                <td>Canada</td>
+            </tr>
+            <tr>
+                <td>Magazzini Alimentari Riuniti</td>
+                <td>Giovanni Rovelli</td>
+                <td>Italy</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Right Column with Video -->
+    <div class="column right">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/NpZ-MjUrvN0?start=5" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            <br><br>
+        </div>
+        <br><br>
+
+        <div class="image-container">
+            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="50%" alt="logo"/>
+            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="50%" alt="logo"/>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-container">
+    <div class="footer-column">
+        <h3>Sociale medier</h3>
+        <p><a href="https://www.facebook.com/copenhagenbusinessacademy" class="facebook-link">
+            <img src="facebook.png" alt="facebook" class="social-icon">
+            Facebook</a></p>
+        <p><a href="https://www.instagram.com/cphbusiness/" class="instagram-link">
+            <img src="instagram.png" alt="instagram" class="social-icon">
+            Instagram</a></p>
+    </div>
+    <div class="footer-column">
+        <h3>Kontakt</h3>
+        <p>Hjælp : kontakt@cphbusiness.dk</p>
+        <p>It hjælp : helpdesk@cphbusiness.dk</p>
+    </div>
+    <div class="footer-column">
+        <h3>Adresse</h3>
+        <p>Firskovvej 18 2800Kongens Lyngby</p>
+        <p>Mandag-torsdag 8.00 - 15.30</p>
+    </div>
+</footer>
+
+</body>
+</html>
+
+
+<!--<div class="column left">-->
+<!--    <form method="post" class="login-form" , id="grey-box">-->
+<!--        <input type="email" name="email" placeholder="Email"/><br>-->
+<!--        <input type="password" name="password1" placeholder="Kodeord"/><br>-->
+<!--        <input type="password" name="password2" placeholder="Gentag kodeord"/><br>-->
+<!--        <input type="text" name="name" placeholder="Navn"/><br>-->
+<!--        <input type="text" name="phone" placeholder="Telefonnr"/><br>-->
+<!--        <input type="text" name="roles" placeholder="Rolle">-->
+<!--        <button type="submit" formaction="/createuser">Opret bruger</button>-->
+<!--    </form>-->
+<!--    &lt;!&ndash; Message display if needed &ndash;&gt;-->
+<!--    <div><p th:text="${message}"></p></div>-->
+<!--</div>-->

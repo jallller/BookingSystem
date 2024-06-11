@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Frontpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<header>
+
+    <div class="logocontainer">
+        <a href="frontpage.html" th:href="@{/}">
+            <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
+        </a>
+    </div>
+
+    <div class="nav-links"> <!-- Moved nav-links to the right side -->
+        <a href="login.html">Login</a>
+        <a href="adminseebookings.html">Admin</a>
+    </div>
+</header>
+
+<h1>Velkommen til cph business booking system</h1>
+
+<div class="containercolumns">
+    <!-- Left Column with Login Form -->
+
+    <div class="column left">
+        <form class="login-form" method="post" action="/login">
+            <h2>Login:</h2>
+            <input type="email" name="email" placeholder="Email"/>
+            <input type="password" name="password" placeholder="Password"/><br><br>
+            <button type="submit" class="login-button" >Login</button>
+        </form>
+        <!-- Message display if needed -->
+        <div><p th:text="${message}"></p></div>
+    </div>
+
+    <!-- Middle Column with Placeholder Text -->
+    <div class="column middle">
+        <h3>Some text</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+
+    <!-- Right Column with Video -->
+    <div class="column right">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/NpZ-MjUrvN0?start=5" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            <br><br>
+        </div>
+        <br><br>
+
+        <div class="image-container">
+            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="50%" alt="logo"/>
+            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="50%" alt="logo"/>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-container">
+    <div class="footer-column">
+        <h3>Sociale medier</h3>
+        <p><a href="https://www.facebook.com/copenhagenbusinessacademy" class="facebook-link">
+            <img src="facebook.png" alt="facebook" class="social-icon">
+            Facebook</a></p>
+        <p><a href="https://www.instagram.com/cphbusiness/" class="instagram-link">
+            <img src="instagram.png" alt="instagram" class="social-icon">
+            Instagram</a></p>
+    </div>
+    <div class="footer-column">
+        <h3>Kontakt</h3>
+        <p>Hjælp : kontakt@cphbusiness.dk</p>
+        <p>It hjælp : helpdesk@cphbusiness.dk</p>
+    </div>
+    <div class="footer-column">
+        <h3>Adresse</h3>
+        <p>Firskovvej 18 2800Kongens Lyngby</p>
+        <p>Mandag-torsdag 8.00 - 15.30</p>
+    </div>
+</footer>
+
+</body>
+</html>

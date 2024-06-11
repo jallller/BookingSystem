@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>receipt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<header>
+
+    <div class="logocontainer">
+        <a href="frontpage.html" th:href="@{/}">
+            <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
+        </a>
+    </div>
+
+    <div class="nav-links"> <!-- Moved nav-links to the right side -->
+        <a href="login.html">Login</a>
+        <a href="adminseebookings.html">Admin</a>
+    </div>
+</header>
+
+<h3>Some text</h3>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br>Lorem Ipsum has been the
+    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+    scrambled it to make a type specimen book.<br> It has survived not only five centuries, but also the leap into
+    electronic typesetting, remaining essentially unchanged.<br> It was popularised in the 1960s with the release of
+    Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+    Aldus PageMaker including versions of Lorem Ipsum.
+</p>
+
+<footer class="footer-container">
+    <div class="footer-column">
+        <h3>Sociale medier</h3>
+        <p><a href="https://www.facebook.com/copenhagenbusinessacademy">Facebook</a></p>
+        <p><a href="https://www.instagram.com/cphbusiness/">Instagram</a></p>
+    </div>
+    <div class="footer-column">
+        <h3>Kontakt:</h3>
+        <p>Hjælp : kontakt@cphbusiness.dk</p>
+        <p>It hjælp : helpdesk@cphbusiness.dk</p>
+    </div>
+    <div class="footer-column">
+        <h3>Adresse</h3>
+        <p>Firskovvej 18 2800Kongens Lyngby</p>
+        <p>Mandag-torsdag 8.00 - 15.30</p>
+    </div>
+</footer>
+
+
+</body>
+</html>
