@@ -22,24 +22,77 @@
     </div>
 </header>
 
-<form action="/action_page.php">
-    <label for="date">Låne dato:</label>
-    <input type="date" id="date" name="date">
 
-    <label for="equipment_type">Vælg udstyr:</label>
-    <select name="equipment_type" id="equipment_type">
-        <option value="VR-1">VR-1</option>
-        <option value="VR-2">VR-2</option>
-        <option value="VR-3">VR-3</option>
-    </select>
-
-    <input type="text", name="days", placeholder="Antal dage"/>
-
-    <input type="submit">
-</form>
+<h1>Velkommen til cph business booking system</h1>
 
 
+<div class="containercolumns">
+    <!-- Left Column with Login Form change form action -->
 
+    <div class="column left">
+
+        <form class="booking-form" action="/action_page.php">
+            <div class="form-group">
+                <label for="date">Låne dato:</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="equipment_type">Vælg udstyr:</label>
+                <select name="equipment_type" id="equipment_type">
+                    <option value="VR-1">VR-1</option>
+                    <option value="VR-2">VR-2</option>
+                    <option value="VR-3">VR-3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" id="days" name="days" placeholder="Antal dage">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="booking-button">Submit</button>
+            </div>
+        </form>
+
+</div>
+
+<!-- Middle Column with Placeholder Text -->
+<div class="column middle">
+    <h3>Some text</h3>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+        Aldus PageMaker including versions of Lorem Ipsum.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+        Aldus PageMaker including versions of Lorem Ipsum.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+        Aldus PageMaker including versions of Lorem Ipsum.</p>
+</div>
+
+<!-- Right Column with Video -->
+<div class="column right">
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/NpZ-MjUrvN0?start=5" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        <br><br>
+    </div>
+    <br><br>
+
+    <div class="image-container">
+        <img src="../public/images/students.png" th:src="@{/images/students.png}" width="50%" alt="logo"/>
+        <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="50%" alt="logo"/>
+    </div>
+</div>
+</div>
 
 
 <footer class="footer-container">

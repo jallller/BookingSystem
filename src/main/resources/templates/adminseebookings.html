@@ -22,11 +22,32 @@
     </div>
 </header>
 
-<h1>Adminside</h1>
+<h1>Bookingsside</h1>
 
 <p>Knap - opret bruger / se brugere / ret / slet</p>
 <p>Knap - se bookinger</p>
 <p>Knap - se udstyr / tilføj udstyr / ret udstyr / slet udstyr</p>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>Bookings</th>
+        <th>acction</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bookings: ${bookingsList}">
+        <td th:text="${bookings.bookings_id}"></td>
+        <td>
+            <button type="submit">Godkend</button>
+            <button type="submit">Slet</button>
+            <p>Send bekræftelse til bruger</p>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
 
 
 

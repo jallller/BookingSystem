@@ -2,11 +2,13 @@ package app.controllers;
 
 //import app.entities.Order;
 import app.entities.Bookings;
+import app.entities.Equipment;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.BookingsMapper;
 import app.persistence.ConnectionPool;
 //import app.persistence.OrderMapper;
+import app.persistence.EquipmentMapper;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
@@ -22,9 +24,14 @@ public class UserController {
 //        app.get("goToInfo", ctx -> ctx.render("info.html"));
 //        app.post("goToInfo", ctx -> goToInfo(ctx));
 //        app.get("createuser", ctx -> ctx.render("createuser.html"));
+//        app.post("createuser", ctx -> ctx.render("createuser.html"));
         app.post("createuser", ctx -> ctx.render("createuser.html"));
 //        app.post("createuser", ctx -> createUser(ctx, connectionPool));
         //app.post("getAllUsers", ctx -> getAllUsers(ctx, connectionPool));
+//        app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
+        app.get("adminseeequipment.html", ctx -> ctx.render("adminseeequipment.html"));
+        app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
+        app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
     }
 
     private static void createUser(Context ctx, ConnectionPool connectionPool) {
@@ -71,12 +78,14 @@ public class UserController {
             ctx.sessionAttribute("currentUser",user);
             List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
             ctx.attribute("bookingsList",bookingsList);
+//            List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(user.getUser_id(), connectionPool);
+//            ctx.attribute("equipmentList", equipmentList);
+
             ctx.sessionAttribute("currentUser", user);
             //Hvis ja send videre til bookingside
             ctx.render("admin.html");
 
             if (user.getRoles().equals("admin")) {
-
                 ctx.render("admin.html");
             } else {
                 ctx.render("frontpage.html"); //Server error booking.html

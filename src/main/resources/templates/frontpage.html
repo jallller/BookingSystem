@@ -14,10 +14,16 @@
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-
     <div class="nav-links"> <!-- Moved nav-links to the right side -->
-        <a href="login.html">Login</a>
-        <a href="adminseebookings.html">Admin</a>
+        <!--        <a href="login.html">Login</a>-->
+        <!--        <a href="adminseebookings.html">Admin</a>-->
+
+<!--        <p th:if="${session.currentUser !=null}">-->
+<!--            &lt;!&ndash;        <span th:text="${session.currentUser.email}"></span>&ndash;&gt;-->
+<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+<!--        </p>-->
+
+<!--        <p><span th:text="${session.currentUser.email}"></span></p>-->
     </div>
 </header>
 

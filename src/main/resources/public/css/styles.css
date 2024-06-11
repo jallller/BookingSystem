@@ -85,6 +85,31 @@ h1 {
     background-color: #9B6FC7;
 }
 
+.booking-form input[type=text]{
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #ccc;
+    border-radius: 8px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.booking-form button{
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #1B215A;
+    color: white;
+    width: 100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-form button:hover{
+    background-color: #9B6FC7;
+
+}
+
 /* Admin buttons styling */
 .adminbuttons button {
     padding: 10px;
@@ -314,4 +339,57 @@ body {
     height: auto;
     vertical-align: middle; /* Align the icons vertically with the text */
     margin-right: 5px; /* Add some space between the icon and the text */
+}
+
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form styling */
+.booking-form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form .form-group {
+    margin-bottom: 15px;
+}
+
+.booking-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 1rem;
+}
+
+.booking-form input[type="date"],
+.booking-form select,
+.booking-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.booking-form button.booking-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1B215A;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.booking-form button.booking-button:hover {
+    background-color: #3e26de;
 }
