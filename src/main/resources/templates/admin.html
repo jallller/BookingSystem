@@ -1,111 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
-
-<!--<title>admin</title>-->
-<!--<meta charset="UTF-8">-->
-<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>-->
-<!--</head>-->
-
-<!--<body>-->
-<!--<header>-->
-
-<!--    <div class="logocontainer">-->
-<!--        <a href="frontpage.html" th:href="@{/}">-->
-<!--            <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>-->
-<!--        </a>-->
-<!--    </div>-->
-
-<!--    <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
-<!--        &lt;!&ndash;        <a href="login.html">Login</a>&ndash;&gt;-->
-<!--        &lt;!&ndash;        <a href="adminseebookings.html">Admin</a>&ndash;&gt;-->
-
-<!--        <p th:if="${session.currentUser !=null}">-->
-<!--            &lt;!&ndash;        <span th:text="${session.currentUser.email}"></span>&ndash;&gt;-->
-<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
-<!--        </p>-->
-
-<!--        <p><span th:text="${session.currentUser.email}"></span></p>-->
-<!--    </div>-->
-
-
-<!--</header>-->
-
-<!--<h1>Velkommen til adminsiden <span th:text="${session.currentUser.email}"></span></h1>-->
-
-
-
-
-<!--<div class="containercolumns">-->
-<!--    &lt;!&ndash; Left Column with Login Form &ndash;&gt;-->
-
-<!--    <div class="column left">-->
-<!--        <div class="image-container">-->
-<!--            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="logo"/>-->
-<!--            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="75%" alt="logo"/>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Middle Column with Placeholder Text &ndash;&gt;-->
-<!--    <div class="column middle">-->
-<!--        <div class="adminbuttons_centered">-->
-<!--            <form class="adminbuttons" method="get">-->
-<!--                <a href="adminseebookings.html">-->
-<!--                    <button type="button" class="adminbuttons">Bookinger</button>-->
-<!--                </a>-->
-<!--            </form>-->
-
-<!--            <br><br>-->
-<!--            <form class="adminbuttons" method="get">-->
-<!--                <a href="adminseeequipment.html">-->
-<!--                    <button type="button" class="adminbuttons">Udstyr</button>-->
-<!--                </a>-->
-<!--            </form>-->
-<!--            <br><br>-->
-<!--            <form class="adminbuttons" method="get">-->
-<!--                <a href="adminSeeStudents.html">-->
-<!--                    <button type="button" class="adminbuttons">Brugere</button>-->
-<!--                </a>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Right Column with Video &ndash;&gt;-->
-<!--    <div class="column right">-->
-<!--        <div class="image-container">-->
-<!--            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="logo"/>-->
-<!--            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="75%" alt="logo"/>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-
-
-
-
-
-<!--<footer class="footer-container">-->
-<!--    <div class="footer-column">-->
-<!--        <h3>Sociale medier</h3>-->
-<!--        <p><a href="https://www.facebook.com/copenhagenbusinessacademy">Facebook</a></p>-->
-<!--        <p><a href="https://www.instagram.com/cphbusiness/">Instagram</a></p>-->
-<!--    </div>-->
-<!--    <div class="footer-column">-->
-<!--        <h3>Kontakt:</h3>-->
-<!--        <p>Hjælp : kontakt@cphbusiness.dk</p>-->
-<!--        <p>It hjælp : helpdesk@cphbusiness.dk</p>-->
-<!--    </div>-->
-<!--    <div class="footer-column">-->
-<!--        <h3>Adresse</h3>-->
-<!--        <p>Firskovvej 18 2800Kongens Lyngby</p>-->
-<!--        <p>Mandag-torsdag 8.00 - 15.30</p>-->
-<!--    </div>-->
-<!--</footer>-->
-
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
@@ -123,12 +15,36 @@
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-    <div class="nav-links"> <!-- Moved nav-links to the right side -->
-        <p th:if="${session.currentUser !=null}">
-            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>
-        </p>
-        <p><span th:text="${session.currentUser.email}"></span></p>
+
+    <div class="nav-links">
+        <form class="accountbuttons">
+            <a><p th:if="${session.currentUser !=null}">
+                <!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+                <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log ud</a></button>
+            </p></a></form>
+        <form class="accountbuttons" method="get">
+            <a href="account.html">
+                <button type="button" class="accountbuttons">Konto</button>
+            </a>
+        </form>
     </div>
+
+
+<!--    <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
+<!--        <p th:if="${session.currentUser !=null}">-->
+<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+<!--        </p>-->
+<!--        <p><span th:text="${session.currentUser.email}"></span></p>-->
+<!--        <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
+<!--            <a href="login.html">Login</a>-->
+<!--            <a href="account.html">Admin</a>-->
+<!--            <form class="accountbuttons" method="get">-->
+<!--                <a href="account.html">-->
+<!--                    <button type="button" class="accountbuttons">Konto</button>-->
+<!--                </a>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
 </header>
 
 <h1>Velkommen til adminsiden <span th:text="${session.currentUser.email}"></span></h1>
@@ -162,6 +78,7 @@
                     <button type="button" class="adminbuttons">Brugere</button>
                 </a>
             </form>
+
         </div>
     </div>
 

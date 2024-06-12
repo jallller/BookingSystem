@@ -1,6 +1,7 @@
 package app.controllers;
 
 //import app.entities.Order;
+
 import app.entities.Bookings;
 import app.entities.Equipment;
 import app.entities.User;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class UserController {
 
-    public static void addRoutes(Javalin app,ConnectionPool connectionPool) {
+    public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
         app.post("login", ctx -> login(ctx, connectionPool));
         app.get("logout", ctx -> logout(ctx));
 //        app.post("login", ctx -> UserController.login(ctx));
@@ -32,7 +33,8 @@ public class UserController {
         app.get("adminseeequipment.html", ctx -> ctx.render("adminseeequipment.html"));
         app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
         app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
-        app.post("createuser", ctx -> createUser(ctx,connectionPool));
+        app.get("account.html", ctx -> ctx.render("account.html"));
+        app.post("createuser", ctx -> createUser(ctx, connectionPool));
         app.get("createuser.html", ctx -> ctx.render("createuser.html")); //Lander på siden
 
     }
@@ -79,9 +81,12 @@ public class UserController {
         try {
 
             User user = UserMapper.login(email, password, connectionPool);
-            ctx.sessionAttribute("currentUser",user);
-            List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
-            ctx.attribute("bookingsList",bookingsList);
+            ctx.sessionAttribute("currentUser", user);
+//            List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
+//            ctx.attribute("bookingsList",bookingsList);
+
+//            List<User> userList = UserMapper.getAllUsers(user.getUser_id(), connectionPool);
+//            List<User> userList2 = UserMapper.getAllUsers2(connectionPool);
 //            List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(user.getUser_id(), connectionPool);
 //            ctx.attribute("equipmentList", equipmentList);
 
@@ -101,10 +106,30 @@ public class UserController {
             ctx.attribute("message", e.getMessage());
             ctx.render("frontpage.html");
         }
-
-
     }
-
+//
+//    public static void getAllUsers(Context ctx, ConnectionPool connectionPool) {
+//        //Hent formparametre
+//        String email = ctx.formParam("email");
+//        String password = ctx.formParam("password");
+//
+//
+//        try {
+//            List<User> userList = UserMapper.getAllUsers2(connectionPool);
+////            List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
+////            ctx.attribute("bookingsList",bookingsList);
+//
+////            List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(user.getUser_id(), connectionPool);
+////            ctx.attribute("equipmentList", equipmentList);
+//            //Hvis ja send videre til bookingside
+//            ctx.render("adminSeeStudents.html");
+//
+//        } catch (DatabaseException e) {
+//            //Hvis nej send tilbage til loginside med fejlbesked
+//            ctx.attribute("message", e.getMessage());
+//            ctx.render("adminSeeStudents.html");
+//        }
+//    }
 
 }
 

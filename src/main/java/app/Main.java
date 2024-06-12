@@ -2,6 +2,7 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
+import app.controllers.BookingsController;
 import app.controllers.EquipmentController;
 import app.controllers.UserController;
 import app.persistence.ConnectionPool;
@@ -34,6 +35,7 @@ public class Main {
         app.get("/", ctx ->  ctx.render("frontpage.html"));
         UserController.addRoutes(app,connectionPool);
         EquipmentController.addRoutes(app,connectionPool);
+        BookingsController.addRoutes(app,connectionPool);
 //        app.post("login",ctx-> ctx.render("createuser.html")); //Video 5 Ftp - Tjek hvorfor serverfejl ved bookings.html
 //        app.post("login", ctx -> UserController.login(ctx,connectionPool)); //^
 

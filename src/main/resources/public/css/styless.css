@@ -247,3 +247,22 @@ body {
 .booking-form button.booking-button:hover {
     background-color: #3e26de;
 }
+
+.accountbuttons button {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #1B215A;
+    color: white;
+    width: 75px;
+    margin: 0 auto;
+}
+
+.accountbuttons button:hover {
+    background-color: #3e26de;
+}
+
+
+.accountbuttons button:hover{
+    background-color: #3e26de;
+}

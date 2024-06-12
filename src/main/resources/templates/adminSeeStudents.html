@@ -15,120 +15,106 @@
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-    <div class="nav-links"> <!-- Moved nav-links to the right side -->
-        <p th:if="${session.currentUser !=null}">
-            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>
-        </p>
-        <p><span th:text="${session.currentUser.email}"></span></p>
+<!--    <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
+<!--        <p th:if="${session.currentUser !=null}">-->
+<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+<!--        </p>-->
+<!--        <p><span th:text="${session.currentUser.email}"></span></p>-->
+<!--    </div>-->
+    <div class="nav-links">
+        <form class="accountbuttons">
+            <a><p th:if="${session.currentUser !=null}">
+                <!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+                <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log ud</a></button>
+            </p></a></form>
+        <form class="accountbuttons" method="get">
+            <a href="account.html">
+                <button type="button" class="accountbuttons">Konto</button>
+            </a>
+        </form>
     </div>
 </header>
 
 <h1>Velkommen til adminsiden <span th:text="${session.currentUser.email}"></span></h1>
 
-<!--<form class="adminbuttons" method="get">-->
-<!--    <a href="createuser.html">-->
-<!--        <button type="button" class="adminbuttons">Opret bruger</button>-->
-<!--    </a>-->
-<!--</form>-->
-<!--<div class="adminbuttons_right">-->
+<form class="adminbuttons" method="get">
+    <a href="createuser.html">
+        <button type="button" class="adminbuttons">Opret bruger</button>
+    </a>
+</form>
+<div class="adminbuttons_right">
 
 
-<!--    <form class="adminbuttons" method="get">-->
-<!--        <a href="adminseebookings.html">-->
-<!--            <button type="button" class="adminbuttons">Bookinger</button>-->
-<!--        </a>-->
-<!--    </form>-->
-<!--    <form class="adminbuttons" method="get">-->
-<!--        <a href="adminseeequipment.html">-->
-<!--            <button type="button" class="adminbuttons">Udstyr</button>-->
-<!--        </a>-->
-<!--    </form>-->
-<!--</div>-->
+    <form class="adminbuttons" method="get">
+        <a href="adminseebookings.html">
+            <button type="button" class="adminbuttons">Bookinger</button>
+        </a>
+    </form>
+    <form class="adminbuttons" method="get">
+        <a href="adminseeequipment.html">
+            <button type="button" class="adminbuttons">Udstyr</button>
+        </a>
+    </form>
+</div>
 <!-- Left Column with Images the left coulmn is outside the whole container-->
-<div class="column left">
+<div class="column left" >
     <div class="containercolumns">
 
-        <form class="adminbuttonspages" method="get">
-            <a href="createuser.html">
-                <button type="button" class="adminbuttonspages">Opret bruger</button>
-            </a>
-        </form>
-        <br><br>
+<!--        <form class="adminbuttonspages" method="get">-->
+<!--            <a href="createuser.html">-->
+<!--                <button type="button" class="adminbuttonspages">Opret bruger</button>-->
+<!--            </a>-->
+<!--        </form>-->
+<!--        <br><br>-->
 
-        <form class="adminbuttonspages" method="get">
-            <a href="adminseebookings.html">
-                <button type="button" class="adminbuttonspages">Bookinger</button>
-            </a>
-        </form>
-        <br><br>
-        <form class="adminbuttonspages" method="get">
-            <a href="adminseeequipment.html">
-                <button type="button" class="adminbuttonspages">Udstyr</button>
-            </a>
-        </form>
+<!--        <form class="adminbuttonspages" method="get">-->
+<!--            <a href="adminseebookings.html">-->
+<!--                <button type="button" class="adminbuttonspages">Bookinger</button>-->
+<!--            </a>-->
+<!--        </form>-->
+<!--        <br><br>-->
+<!--        <form class="adminbuttonspages" method="get">-->
+<!--            <a href="adminseeequipment.html">-->
+<!--                <button type="button" class="adminbuttonspages">Udstyr</button>-->
+<!--            </a>-->
+<!--        </form>-->
     </div>
 
     <!-- Middle Column with Admin Buttons -->
+    <h3>ShowAllUsers</h3>
     <div class="column middle">
         <div class="adminbuttons_centered">
             <table>
                 <thead>
                 <tr>
-                    <th>Users</th>
-                    <th>acction</th>
+                    <th>User Email</th>
+                    <th>User id</th>
+                    <th>Knap</th>
+                    <th>Knap</th>
+                    <th>Knap</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="user: ${userList}">
-                    <td th:text="${user.user_id}"></td>
-                    <td>Knap</td>
-
+                    <td th:text="${user.email}"></td>
+                    <td>Something</td>
                 </tr>
+                </tbody>
+                <tbody>
+                <tr th:each="user: ${userList}">
+                    <td th:text="${user.user_id}"></td>
+                    <td>Something</td>
+                </tr>
+
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Right Column with Images -->
-    <div class="column right">
-        <table>
-            <tr>
-                <th>Company</th>
-                <th>Contact</th>
-                <th>Country</th>
-            </tr>
-            <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-            </tr>
-            <tr>
-                <td>Ernst Handel</td>
-                <td>Roland Mendel</td>
-                <td>Austria</td>
-            </tr>
-            <tr>
-                <td>Island Trading</td>
-                <td>Helen Bennett</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Yoshi Tannamuri</td>
-                <td>Canada</td>
-            </tr>
-            <tr>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Giovanni Rovelli</td>
-                <td>Italy</td>
-            </tr>
-        </table>
-    </div>
+
+
+<div class="column middle">
+
 </div>
 
 <footer class="footer-container">

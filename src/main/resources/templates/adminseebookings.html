@@ -15,12 +15,23 @@
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-    <div class="nav-links"> <!-- Moved nav-links to the right side -->
-        <p th:if="${session.currentUser !=null}">
-            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>
-        </p>
-        <p><span th:text="${session.currentUser.email}"></span></p>
+
+    <div class="nav-links">
+        <form class="accountbuttons">
+            <a>
+                <p th:if="${session.currentUser !=null}">
+                    <!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+                    <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log
+                        ud</a></button>
+                </p>
+            </a></form>
+        <form class="accountbuttons" method="get">
+            <a href="account.html">
+                <button type="button" class="accountbuttons">Konto</button>
+            </a>
+        </form>
     </div>
+
 </header>
 
 <h1>Adminside<span th:text="${session.currentUser.email}"></span></h1>
