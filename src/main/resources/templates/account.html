@@ -26,7 +26,6 @@
 <h1>Account<span th:text="${session.currentUser.email}"></span></h1>
 
 <div class="containercolumns">
-    <!-- Left Column with Images -->
     <div class="column left">
         <div class="image-container">
             <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>
@@ -34,7 +33,6 @@
         </div>
     </div>
 
-    <!-- Middle Column with Admin Buttons -->
     <div class="column middle">
         <div class="adminbuttons_centered">
             <form method="post" class="login-form" , id="grey-box">
@@ -48,7 +46,6 @@
         </div>
     </div>
 
-    <!-- Right Column with Images -->
     <div class="column right">
         <div class="image-container">
             <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>

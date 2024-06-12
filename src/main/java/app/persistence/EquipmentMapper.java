@@ -56,13 +56,13 @@ public class EquipmentMapper {
             ps.setInt(4, room_number);
 
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected != 1) {
-                throw new DatabaseException("Fejl ved oprettelse af nyt udstyr");
-
-
-            } else {
-                throw new DatabaseException("Fejl ved oprettelse af udstyr.");
-            }
+//            if (rowsAffected != 1) {
+//                throw new DatabaseException("Fejl ved oprettelse af nyt udstyr");
+//
+//
+//            } else {
+//                throw new DatabaseException("Fejl ved oprettelse af udstyr.");
+//            }
         } catch (SQLException e) {
             throw new DatabaseException("Der er sket en fejl. Prøv igen", e.getMessage());
         }
@@ -80,13 +80,13 @@ public class EquipmentMapper {
             ps.setString(2, description);
 
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected != 1) {
-                throw new DatabaseException("Fejl ved oprettelse af ny rum ");
-
-
-            } else {
-                throw new DatabaseException("Fejl ved oprettelse af rum.");
-            }
+//            if (rowsAffected != 1) {
+//                throw new DatabaseException("Fejl ved oprettelse af ny rum ");
+//
+//
+//            } else {
+//                throw new DatabaseException("Fejl ved oprettelse af rum.");
+//            }
         } catch (SQLException e) {
             throw new DatabaseException("Der er sket en fejl. Prøv igen", e.getMessage());
         }
@@ -119,6 +119,8 @@ public class EquipmentMapper {
                 String equipment_name = rs.getString("equipment_name");
                 String description = rs.getString("description");
                 int room_number = rs.getInt("room_number");
+
+
 
                 equipmentList.add(new Equipment(equipment_id, equipment_name, description, room_number));
             }

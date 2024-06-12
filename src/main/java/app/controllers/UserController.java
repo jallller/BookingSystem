@@ -35,7 +35,7 @@ public class UserController {
         app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
         app.get("account.html", ctx -> ctx.render("account.html"));
         app.post("createuser", ctx -> createUser(ctx, connectionPool));
-        app.get("createuser.html", ctx -> ctx.render("createuser.html")); //Lander på siden
+        app.get("createuser.html", ctx -> ctx.render("createuser.html"));
 
     }
 
@@ -82,6 +82,11 @@ public class UserController {
 
             User user = UserMapper.login(email, password, connectionPool);
             ctx.sessionAttribute("currentUser", user);
+            List <User> userList = UserMapper.getAllUsers(connectionPool);
+            ctx.attribute("userList", userList);
+
+            List <Equipment> equipmentList = EquipmentMapper.getAllEquipment(connectionPool);
+            ctx.attribute("equipmentList", equipmentList);
 //            List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
 //            ctx.attribute("bookingsList",bookingsList);
 
@@ -107,20 +112,36 @@ public class UserController {
             ctx.render("frontpage.html");
         }
     }
+
+    public static void getAllUsers(Context ctx, ConnectionPool connectionPool) {
+        //Hent formparametre
+        String email = ctx.formParam("email");
+        String password = ctx.formParam("password");
+
+        try {
+            List<User> userList = UserMapper.getAllUsers(connectionPool);
+
+            //Hvis ja send videre til bookingside
+            List <User> userList2 = UserMapper.getAllUsers(connectionPool);
+            ctx.attribute("userList2", userList2);
+            ctx.render("adminSeeStudents.html");
+
+        } catch (DatabaseException e) {
+            //Hvis nej send tilbage til loginside med fejlbesked
+            ctx.attribute("message", e.getMessage());
+            ctx.render("adminSeeStudents.html");
+        }
+    }
 //
-//    public static void getAllUsers(Context ctx, ConnectionPool connectionPool) {
+//    public static void getAllEquipment(Context ctx, ConnectionPool connectionPool) {
 //        //Hent formparametre
 //        String email = ctx.formParam("email");
 //        String password = ctx.formParam("password");
 //
 //
 //        try {
-//            List<User> userList = UserMapper.getAllUsers2(connectionPool);
-////            List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
-////            ctx.attribute("bookingsList",bookingsList);
+//            List<Equipment> equipmentList = UserMapper.getAllUsers(connectionPool);
 //
-////            List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(user.getUser_id(), connectionPool);
-////            ctx.attribute("equipmentList", equipmentList);
 //            //Hvis ja send videre til bookingside
 //            ctx.render("adminSeeStudents.html");
 //
@@ -130,6 +151,45 @@ public class UserController {
 //            ctx.render("adminSeeStudents.html");
 //        }
 //    }
+
+//    public static void getAllRooms(Context ctx, ConnectionPool connectionPool) {
+//        //Hent formparametre
+//        String email = ctx.formParam("email");
+//        String password = ctx.formParam("password");
+//
+//
+//        try {
+//            List<User> userList = UserMapper.getAllUsers(connectionPool);
+//
+//            //Hvis ja send videre til bookingside
+//            ctx.render("adminSeeStudents.html");
+//
+//        } catch (DatabaseException e) {
+//            //Hvis nej send tilbage til loginside med fejlbesked
+//            ctx.attribute("message", e.getMessage());
+//            ctx.render("adminSeeStudents.html");
+//        }
+//    }
+
+//    public static void getAllBookings(Context ctx, ConnectionPool connectionPool) {
+//        //Hent formparametre
+//        String email = ctx.formParam("email");
+//        String password = ctx.formParam("password");
+//
+//
+//        try {
+//            List<User> userList = UserMapper.getAllUsers(connectionPool);
+//
+//            //Hvis ja send videre til bookingside
+//            ctx.render("adminSeeStudents.html");
+//
+//        } catch (DatabaseException e) {
+//            //Hvis nej send tilbage til loginside med fejlbesked
+//            ctx.attribute("message", e.getMessage());
+//            ctx.render("adminSeeStudents.html");
+//        }
+//    }
+
 
 }
 

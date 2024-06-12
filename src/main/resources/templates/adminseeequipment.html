@@ -81,14 +81,12 @@
         </table>
     </div>
 
-    <!-- Left Column with Images -->
     <div class="column left">
         <div class="adminbuttons_centered">
 
         </div>
     </div>
 
-    <!-- Middle Column with Admin Buttons -->
     <div class="column middle">
         <table>
             <tr>
@@ -128,6 +126,30 @@
             </tr>
         </table>
     </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>User Email</th>
+            <th>User id</th>
+            <th>Navn</th>
+            <th>Telefon</th>
+            <th>Rolle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="equipment: ${equipmentList}">
+            <td th:text="${equipment.equipment_id}"></td>
+            <td th:text="${equipment.equipment_name}"></td>
+            <td th:text="${equipment.description}"></td>
+        </tr>
+        </tbody>
+        <tbody>
+        <!--        <tr th:each="user: ${userList}">-->
+        <!--            <td th:text="${user.user_id}"></td>-->
+        <!--        </tr>-->
+        </tbody>
+    </table>
 
 
 <!--    <form method="post" class="login-form" , id="grey-box">-->

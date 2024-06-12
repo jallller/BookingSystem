@@ -18,10 +18,13 @@
 
     <div class="nav-links">
         <form class="accountbuttons">
-            <a><p th:if="${session.currentUser !=null}">
-                <!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
-                <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log ud</a></button>
-            </p></a></form>
+            <a>
+                <p th:if="${session.currentUser !=null}">
+                    <!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+                    <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log
+                        ud</a></button>
+                </p>
+            </a></form>
         <form class="accountbuttons" method="get">
             <a href="account.html">
                 <button type="button" class="accountbuttons">Konto</button>
@@ -30,21 +33,21 @@
     </div>
 
 
-<!--    <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
-<!--        <p th:if="${session.currentUser !=null}">-->
-<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
-<!--        </p>-->
-<!--        <p><span th:text="${session.currentUser.email}"></span></p>-->
-<!--        <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
-<!--            <a href="login.html">Login</a>-->
-<!--            <a href="account.html">Admin</a>-->
-<!--            <form class="accountbuttons" method="get">-->
-<!--                <a href="account.html">-->
-<!--                    <button type="button" class="accountbuttons">Konto</button>-->
-<!--                </a>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
+    <!--        <p th:if="${session.currentUser !=null}">-->
+    <!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+    <!--        </p>-->
+    <!--        <p><span th:text="${session.currentUser.email}"></span></p>-->
+    <!--        <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
+    <!--            <a href="login.html">Login</a>-->
+    <!--            <a href="account.html">Admin</a>-->
+    <!--            <form class="accountbuttons" method="get">-->
+    <!--                <a href="account.html">-->
+    <!--                    <button type="button" class="accountbuttons">Konto</button>-->
+    <!--                </a>-->
+    <!--            </form>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </header>
 
 <h1>Velkommen til adminsiden <span th:text="${session.currentUser.email}"></span></h1>
@@ -82,7 +85,60 @@
         </div>
     </div>
 
-    <!-- Right Column with Images -->
+    <table>
+        <thead>
+        <tr>
+            <th>User Email</th>
+            <th>User id</th>
+            <th>Navn</th>
+            <th>Telefon</th>
+            <th>Rolle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${userList}">
+            <td th:text="${user.user_id}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.roles}"></td>
+
+        </tr>
+        </tbody>
+        <tbody>
+        <!--        <tr th:each="user: ${userList}">-->
+        <!--            <td th:text="${user.user_id}"></td>-->
+        <!--        </tr>-->
+        </tbody>
+    </table>
+
+    <br><br>
+    <div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>User Email</th>
+                <th>User id</th>
+                <th>Navn</th>
+                <th>Telefon</th>
+                <th>Rolle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="equipment: ${equipmentList}">
+                <td th:text="${equipment.equipment_id}"></td>
+                <td th:text="${equipment.equipment_name}"></td>
+                <td th:text="${equipment.description}"></td>
+            </tr>
+            </tbody>
+            <tbody>
+            <!--        <tr th:each="user: ${userList}">-->
+            <!--            <td th:text="${user.user_id}"></td>-->
+            <!--        </tr>-->
+            </tbody>
+        </table>
+    </div>
     <div class="column right">
         <div class="image-container">
             <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>

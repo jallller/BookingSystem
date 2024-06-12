@@ -62,40 +62,38 @@ public class UserMapper
             ps.setString(5, roles);
 
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected != 1) {
-                throw new DatabaseException("Fejl ved oprettelse af ny bruger");
-
-
-            } else {
-                throw new DatabaseException("Fejl ved oprettelse af bruger. Bruger-ID blev ikke genereret");
-            }
+//            if (rowsAffected != 1) {
+//                throw new DatabaseException("Fejl ved oprettelse af ny bruger");
+//
+//            } else {
+//                throw new DatabaseException("Fejl ved oprettelse af bruger. Bruger-ID blev ikke genereret");
+//            }
         } catch (SQLException e) {
             throw new DatabaseException("Der er sket en fejl. Prøv igen", e.getMessage());
         }
     }
 
 
-    public static List<User> getAllUsers(int user_id, ConnectionPool connectionPool) throws DatabaseException
+    public static List<User> getAllUsers( ConnectionPool connectionPool) throws DatabaseException
     {
         List<User> userList = new ArrayList<>();
-        String sql = "select * from users where user_id=? order by email";
+        String sql = "select * from users order by email";
 
         try (
                 Connection connection = connectionPool.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)
         )
         {
-            ps.setInt(1, user_id);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {
 
+                int user_id = rs.getInt("user_id");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String name = rs.getString("name");
                 String phone = rs.getString("phone");
                 String roles = rs.getString("roles");
-
 //                userList.add(new User(email,password,name,phone,roles));
                 userList.add(new User(user_id,email,password,name,phone,roles));
             }
@@ -108,37 +106,5 @@ public class UserMapper
     }
 
 
-//
-//    public static List<User> getAllUsers2(ConnectionPool connectionPool) throws DatabaseException
-//    {
-//        List<User> userList = new ArrayList<>();
-//        String sql = "select * from users where user_id=? order by email";
-//
-//        try (
-//                Connection connection = connectionPool.getConnection();
-//                PreparedStatement ps = connection.prepareStatement(sql)
-//        )
-//        {
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next())
-//            {
-//
-//                int user_id = rs.getInt("user_id");
-//                String email = rs.getString("email");
-//                String password = rs.getString("password");
-//                String name = rs.getString("name");
-//                String phone = rs.getString("phone");
-//                String roles = rs.getString("roles");
-////
-//////                userList.add(new User(email,password,name,phone,roles));
-////                userList.add(new User(user_id,email,password,name,phone,roles));
-//            }
-//        }
-//        catch (SQLException e)
-//        {
-//            throw new DatabaseException("Fejl!!!!", e.getMessage());
-//        }
-//        return userList;
-//    }
 
 }

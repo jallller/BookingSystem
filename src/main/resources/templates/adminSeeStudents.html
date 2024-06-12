@@ -15,12 +15,7 @@
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-<!--    <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
-<!--        <p th:if="${session.currentUser !=null}">-->
-<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
-<!--        </p>-->
-<!--        <p><span th:text="${session.currentUser.email}"></span></p>-->
-<!--    </div>-->
+
     <div class="nav-links">
         <form class="accountbuttons">
             <a><p th:if="${session.currentUser !=null}">
@@ -56,7 +51,7 @@
         </a>
     </form>
 </div>
-<!-- Left Column with Images the left coulmn is outside the whole container-->
+
 <div class="column left" >
     <div class="containercolumns">
 
@@ -80,36 +75,32 @@
 <!--        </form>-->
     </div>
 
-    <!-- Middle Column with Admin Buttons -->
     <h3>ShowAllUsers</h3>
-    <div class="column middle">
-        <div class="adminbuttons_centered">
-            <table>
-                <thead>
-                <tr>
-                    <th>User Email</th>
-                    <th>User id</th>
-                    <th>Knap</th>
-                    <th>Knap</th>
-                    <th>Knap</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="user: ${userList}">
-                    <td th:text="${user.email}"></td>
-                    <td>Something</td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr th:each="user: ${userList}">
-                    <td th:text="${user.user_id}"></td>
-                    <td>Something</td>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>User Email</th>
+            <th>User id</th>
+            <th>Navn</th>
+            <th>Telefon</th>
+            <th>Rolle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${userList}">
+            <td th:text="${user.user_id}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.roles}"></td>
+        </tr>
+        </tbody>
+        <tbody>
+        <!--        <tr th:each="user: ${userList}">-->
+        <!--            <td th:text="${user.user_id}"></td>-->
+        <!--        </tr>-->
+        </tbody>
+    </table>
 
 
 

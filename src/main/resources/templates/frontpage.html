@@ -30,7 +30,6 @@
 <h1>Velkommen til cph business booking system</h1>
 
 <div class="containercolumns">
-    <!-- Left Column with Login Form -->
 
     <div class="column left">
         <form class="login-form" method="post" action="/login">
@@ -39,11 +38,9 @@
             <input type="password" name="password" placeholder="Password"/><br><br>
             <button type="submit" class="login-button" >Login</button>
         </form>
-        <!-- Message display if needed -->
         <div><p th:text="${message}"></p></div>
     </div>
 
-    <!-- Middle Column with Placeholder Text -->
     <div class="column middle">
         <h3>Some text</h3>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
@@ -66,7 +63,6 @@
             Aldus PageMaker including versions of Lorem Ipsum.</p>
     </div>
 
-    <!-- Right Column with Video -->
     <div class="column right">
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/NpZ-MjUrvN0?start=5" frameborder="0"
