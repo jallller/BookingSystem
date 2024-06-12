@@ -42,17 +42,17 @@
 
         <form method="post" class="booking-form">
             <div class="form-group">
-                <label for="date">Låne dato:</label>
+                <label for="date"><h3>Udlån:</h3></label>
                 <input type="date" id="date" name="date">
             </div>
-            <div class="form-group">
-                <label for="equipment_type">Vælg udstyr:</label>
-                <select name="equipment_name" id="equipment_type">
-                    <option value="VR-1">VR-1</option>
-                    <option value="VR-2">VR-2</option>
-                    <option value="VR-3">VR-3</option>
-                </select>
-            </div>
+            <div><select name="equipmentDropdown" id="equipmentDropdown">
+                <option value="">Vælg udstyr:</option>
+                <option th:each="equipment : ${equipmentList}"
+                        th:value="${equipment.equipment_id}"
+                        th:text="${'ID: ' + equipment.equipment_id + ', Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">
+                </option>
+            </select></div>
+            <br>
             <div class="form-group">
                 <input type="text" id="days" name="days" placeholder="Antal dage">
             </div>
