@@ -36,7 +36,9 @@ public class UserController {
         app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
         app.get("account.html", ctx -> ctx.render("account.html"));
         app.post("createuser", ctx -> createUser(ctx, connectionPool));
+//        app.post("createuser", ctx -> getAllUsers(ctx, connectionPool));
         app.get("createuser.html", ctx -> ctx.render("createuser.html"));
+
 
     }
 
@@ -54,8 +56,8 @@ public class UserController {
         if (password1.equals(password2)) {
             try {
                 UserMapper.createUser(email, password1, name, phone, roles, connectionPool);
-                ctx.attribute("message", "Brugeren oprettet med brugernavn: " + email + ". Log venligst på");
-                ctx.render("frontpage.html"); //Send til adminside
+                ctx.attribute("message", "Brugeren oprettet med brugernavn: " + email);
+                ctx.render("createuser.html"); //Send til adminside
 
             } catch (DatabaseException e) {
                 ctx.attribute("message", "Brugernavnet er allerede i brug");
@@ -88,6 +90,9 @@ public class UserController {
 
             List <Equipment> equipmentList = EquipmentMapper.getAllEquipment(connectionPool);
             ctx.attribute("equipmentList", equipmentList);
+
+            List <Room> roomList = EquipmentMapper.getAllRooms(connectionPool);
+            ctx.attribute("roomList", roomList);
 
 //            List <Room> roomList = RoomMapper.getAllRoom(connectionPool);
 //            ctx.attribute("roomList", roomList);

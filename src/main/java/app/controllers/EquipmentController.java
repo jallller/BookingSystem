@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.entities.Equipment;
+import app.entities.Room;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.EquipmentMapper;
@@ -22,6 +23,9 @@ public class EquipmentController {
         app.post("createroom", ctx -> createRoom(ctx, connectionPool));
         app.get("adminAddEquimentRoom.html", ctx -> ctx.render("adminAddEquimentRoom.html"));
         app.get("allEquipment", ctx -> getAllEquipment(ctx, connectionPool));
+//        app.get("allEquipment", ctx -> getAllRooms(ctx, connectionPool));
+
+
 
 
     }
@@ -68,6 +72,16 @@ public class EquipmentController {
         try {
             List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(connectionPool);
             ctx.attribute("equipmentList", equipmentList);
+            ctx.render("adminseeequipment.html");
+        } catch (DatabaseException e) {
+            ctx.attribute("message", e.getMessage());
+            ctx.render("error.html");
+        }
+    }
+    private static void getAllRooms(Context ctx, ConnectionPool connectionPool) {
+        try {
+            List<Room> roomList = EquipmentMapper.getAllRooms(connectionPool);
+            ctx.attribute("roomList", roomList);
             ctx.render("adminseeequipment.html");
         } catch (DatabaseException e) {
             ctx.attribute("message", e.getMessage());

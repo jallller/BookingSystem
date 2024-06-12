@@ -18,10 +18,13 @@
 
     <div class="nav-links">
         <form class="accountbuttons">
-        <a><p th:if="${session.currentUser !=null}">
-<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
-            <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log ud</a></button>
-        </p></a></form>
+            <a>
+                <p th:if="${session.currentUser !=null}">
+                    <!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+                    <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log
+                        ud</a></button>
+                </p>
+            </a></form>
         <form class="accountbuttons" method="get">
             <a href="account.html">
                 <button type="button" class="accountbuttons">Konto</button>
@@ -29,7 +32,6 @@
         </form>
     </div>
 </header>
-
 
 
 <h1>Velkommen til cph business booking system</h1>
@@ -49,7 +51,8 @@
                 <option value="">Vælg udstyr:</option>
                 <option th:each="equipment : ${equipmentList}"
                         th:value="${equipment.equipment_id}"
-                        th:text="${'ID: ' + equipment.equipment_id + ', Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">
+                        th:text="${' Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">
+<!--                        th:text="${'ID: ' + equipment.equipment_id + ', Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">-->
                 </option>
             </select></div>
             <br>
@@ -63,6 +66,17 @@
         </form>
 
     </div>
+
+    <!--    <div class="date-picker">-->
+    <!--        <div>-->
+    <!--            <label for="start-date">Start Date:</label>-->
+    <!--            <input type="date" id="start-date" name="start-date">-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--            <label for="end-date">End Date:</label>-->
+    <!--            <input type="date" id="end-date" name="end-date">-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <div class="column middle">
         <h3>Some text</h3>

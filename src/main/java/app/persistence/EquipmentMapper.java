@@ -131,6 +131,27 @@ public class EquipmentMapper {
         return equipmentList;
     }
 
+    public static List<Room> getAllRooms(ConnectionPool connectionPool) throws DatabaseException {
+        List<Room> roomList = new ArrayList<>();
+        String sql = "SELECT * FROM room ORDER BY room_number";
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()
+        ) {
+            while (rs.next()) {
+                int room_number = rs.getInt("room_number");
+                String description = rs.getString("description");
+
+                roomList.add(new Room(room_number,description));
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error retrieving equipment list", e.getMessage());
+        }
+        return roomList;
+    }
+
 //    public static List<Room> getAllRooms(ConnectionPool connectionPool) throws DatabaseException {
 //        List<Room> roomList = new ArrayList<>();
 //        String sql = "SELECT * FROM equipment ORDER BY equipment_name";
