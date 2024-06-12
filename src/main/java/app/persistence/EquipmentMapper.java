@@ -1,6 +1,7 @@
 package app.persistence;
 
 import app.entities.Equipment;
+import app.entities.Room;
 import app.exceptions.DatabaseException;
 import io.javalin.http.Context;
 
@@ -129,6 +130,29 @@ public class EquipmentMapper {
         }
         return equipmentList;
     }
+
+//    public static List<Room> getAllRooms(ConnectionPool connectionPool) throws DatabaseException {
+//        List<Room> roomList = new ArrayList<>();
+//        String sql = "SELECT * FROM equipment ORDER BY equipment_name";
+//
+//        try (
+//                Connection connection = connectionPool.getConnection();
+//                PreparedStatement ps = connection.prepareStatement(sql);
+//                ResultSet rs = ps.executeQuery()
+//        ) {
+//            while (rs.next()) {
+//                int room_number = rs.getInt("room_number");
+//                String description = rs.getString("description");
+//
+//
+//
+//                roomList.add(new Room(room_number,description);
+//            }
+//        } catch (SQLException e) {
+//            throw new DatabaseException("Error retrieving equipment list", e.getMessage());
+//        }
+//        return roomList;
+//    }
 
 
 }

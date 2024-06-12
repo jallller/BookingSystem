@@ -4,6 +4,7 @@ package app.controllers;
 
 import app.entities.Bookings;
 import app.entities.Equipment;
+import app.entities.Room;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.BookingsMapper;
@@ -87,6 +88,11 @@ public class UserController {
 
             List <Equipment> equipmentList = EquipmentMapper.getAllEquipment(connectionPool);
             ctx.attribute("equipmentList", equipmentList);
+
+//            List <Room> roomList = RoomMapper.getAllRoom(connectionPool);
+//            ctx.attribute("roomList", roomList);
+
+
 //            List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
 //            ctx.attribute("bookingsList",bookingsList);
 
