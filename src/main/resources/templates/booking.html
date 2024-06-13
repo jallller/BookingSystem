@@ -87,28 +87,70 @@
 <!--            </tbody>-->
 <!--        </table>-->
 
-        <form method="post" class="booking-form">
+<!--        HEEEEEEEEEEEEEEEEEEER
+<form method="post" class="booking-form">-->
+<!--            <div class="form-group">-->
+<!--                <label for="date"><h3>Udlån:</h3></label>-->
+<!--                <input type="date" id="date" name="date">-->
+<!--            </div>-->
+<!--            <div><select name="equipmentDropdown" id="equipmentDropdown">-->
+<!--                <option value="">Vælg udstyr:</option>-->
+<!--                <option th:each="equipment : ${equipmentList}"-->
+<!--                        th:value="${equipment.equipment_id}"-->
+<!--                        th:text="${' Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">-->
+<!--                    &lt;!&ndash;                        th:text="${'ID: ' + equipment.equipment_id + ', Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">&ndash;&gt;-->
+<!--                </option>-->
+<!--            </select></div>-->
+<!--            <br>-->
+<!--            <div class="form-group">-->
+<!--                <input type="text" id="days" name="days" placeholder="Antal dage">-->
+<!--            </div>-->
+<!--            <input type="text" id="comment" name="comment", placeholder="Kommentar"/>-->
+<!--            <div class="form-group">-->
+<!--                <button type="submit" formaction="/createbooking" class="accountbuttons">Book</button>-->
+<!--&lt;!&ndash;                <button type="submit" formaction="/createbooking" class="accountbuttons">Book</button>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </form>-->
+
+        <form method="post" class="booking-form" th:action="@{/createbooking}">
             <div class="form-group">
                 <label for="date"><h3>Udlån:</h3></label>
-                <input type="date" id="date" name="date">
-            </div>
-            <div><select name="equipmentDropdown" id="equipmentDropdown">
-                <option value="">Vælg udstyr:</option>
-                <option th:each="equipment : ${equipmentList}"
-                        th:value="${equipment.equipment_id}"
-                        th:text="${' Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">
-                    <!--                        th:text="${'ID: ' + equipment.equipment_id + ', Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">-->
-                </option>
-            </select></div>
-            <br>
-            <div class="form-group">
-                <input type="text" id="days" name="days" placeholder="Antal dage">
+                <input type="date" id="date" name="booking_date" required>
             </div>
             <div class="form-group">
-                <button type="submit" formaction="/createbooking" class="accountbuttons">Book</button>
+                <label for="equipment_id">Vælg udstyr:</label>
+                <select id="equipment_id" name="equipment_id" required>
+                    <option value="">Vælg udstyr:</option>
+                    <!-- Iterate over equipmentList using Thymeleaf -->
+                    <option th:each="equipment : ${equipmentList}" th:value="${equipment.equipment_id}">
+                        Name: <span th:text="${equipment.equipment_name}"></span>,
+                        Description: <span th:text="${equipment.description}"></span>
+                    </option>
+                </select>
+            </div>
+<!--            <div class="form-group">-->
+<!--                <label for="days">Antal dage:</label>-->
+<!--                <input type="number" id="days" name="days" placeholder="Antal dage" required>-->
+<!--            </div>-->
 
+            <div class="form-group">
+                <label for="days">Antal dage:</label>
+                <select id="days" name="days" required>
+                    <option value="">Vælg antal dage:</option>
+                    <!-- Options for days from 1 to 10 -->
+                    <option th:each="day : ${#numbers.sequence(1, 10)}" th:value="${day}" th:text="${day}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="comment">Kommentar:</label>
+                <textarea id="comment" name="comment" placeholder="Kommentar"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="accountbuttons">Book</button>
             </div>
         </form>
+
+
 
     </div>
 

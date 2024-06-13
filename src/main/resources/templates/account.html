@@ -43,8 +43,40 @@
                 <input type="text" name="phone" placeholder="Telefonnr"/><br>
                 <input type="text" name="roles" placeholder="Rolle">
             </form>
+
+
         </div>
     </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>Kodeord</th>
+            <th>Navn</th>
+            <th>Telefon</th>
+            <th>Kommentar</th>
+            <th>Booking status</th>
+            <th>Udstyr id</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking: ${bookingsList}">
+            <td>  <span th:text="${session.currentUser.email}"></span></td>
+            <td><span th:text="${session.currentUser.email}"></span></td>
+            <td> <span th:text="${session.currentUser.name}"></span>></td>
+            <td></td> <span th:text="${session.currentUser.phone}"></span></td>
+            <td></td> <span th:text="${session.currentUser.email}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h1>Account<span th:text="${session.currentUser.email}"></span></h1>
+    <h1>Account<span th:text="${session.currentUser.password}"></span></h1>
+    <h1>Account<span th:text="${session.currentUser.name}"></span></h1>
+    <h1>Account<span th:text="${session.currentUser.phone}"></span></h1>
+    <h1>Account<span th:text="${session.currentUser.email}"></span></h1>
+
 
     <div class="column right">
         <div class="image-container">

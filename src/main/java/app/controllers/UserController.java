@@ -99,6 +99,7 @@ public class UserController {
 
             List <Bookings> bookingsList = BookingsMapper.getAllBookings(connectionPool);
             ctx.attribute("bookingsList", bookingsList);
+//            ctx.render("booking.html");
 
             BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
 

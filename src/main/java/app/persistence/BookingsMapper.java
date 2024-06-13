@@ -1,6 +1,7 @@
 package app.persistence;
 
 import app.entities.Bookings;
+import app.entities.User;
 import app.exceptions.DatabaseException;
 
 import java.sql.*;
@@ -21,7 +22,7 @@ public class BookingsMapper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("bookings_id");
-                Date bookings_date = Date.valueOf(rs.getString("booking_date"));
+                Date bookings_date = rs.getDate("booking_date");
                 int days = rs.getInt("days");
                 String comment = rs.getString("comment");
                 Boolean bookings_status = rs.getBoolean("booking_status");
@@ -33,79 +34,93 @@ public class BookingsMapper {
         }
         return bookingsList;
     }
-//
-    public static Bookings addBookings(ConnectionPool connectionPool) {
 
-        Bookings booking = null;
+    public static Bookings addBookings(Bookings booking, ConnectionPool connectionPool) throws DatabaseException {
         Bookings newBooking = null;
 
-        String sql = "insert into bookings (bookings_date,days,comment,bookings_status,user_id,equipment_id) values (?,?,?,?,?,?)";
+        String sql = "insert into bookings (booking_date, days, comment, booking_status, user_id, equipment_id) values (?, ?, ?, ?, ?, ?)";
 
         try (
                 Connection connection = connectionPool.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
-        )
-        {
-            ps.setInt(1, booking.getBookings_id());
-            ps.setDate(2, booking.getBooking_date());
-            ps.setInt(3, booking.getDays());
-            ps.setString(4, booking.getComment());
-            ps.setBoolean(5, booking.isBooking_status());
-            ps.setInt(6, booking.getUser_id());
-            ps.setInt(7, booking.getEquipment_id());
+        ) {
+            ps.setDate(1, booking.getBooking_date());
+            ps.setInt(2, booking.getDays());
+            ps.setString(3, booking.getComment());
+            ps.setBoolean(4, booking.isBooking_status());
+            ps.setInt(5, booking.getUser_id());
+            ps.setInt(6, booking.getEquipment_id());
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected == 1)
-            {
+            if (rowsAffected == 1) {
                 ResultSet rs = ps.getGeneratedKeys();
-                            ResultSet keySet = ps.getGeneratedKeys();
-            if (keySet.next()) {
-                rs.next();
-                int newId = rs.getInt(1);
-                newBooking = new Bookings(keySet.getInt(1), booking.getBooking_date(), booking.getDays(), booking.getComment(),
-                        booking.isBooking_status(), booking.getUser_id(), booking.getEquipment_id());
+                if (rs.next()) {
+                    int newId = rs.getInt(1);
+                    newBooking = new Bookings(newId, booking.getBooking_date(), booking.getDays(), booking.getComment(),
+                            booking.isBooking_status(), booking.getUser_id(), booking.getEquipment_id());
+                }
             }
-            } else
-            {
-                throw new DatabaseException("Fejl under indsætning af booking d. : ");
-            }
-        } catch (DatabaseException e) {
-            throw new RuntimeException(e);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new DatabaseException("An error occurred while creating the booking.", e.getMessage());
         }
         return newBooking;
     }
 
-    public static List<Bookings> getAllBookings(ConnectionPool connectionPool) throws DatabaseException
-    {
+    public static List<Bookings> getAllBookings(ConnectionPool connectionPool) throws DatabaseException {
         List<Bookings> bookingList = new ArrayList<>();
         String sql = "select * from bookings order by user_id";
 
         try (
                 Connection connection = connectionPool.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)
-        )
-        {
+        ) {
             ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
-
+            while (rs.next()) {
                 int bookings_id = rs.getInt("bookings_id");
-                Date booking_date = Date.valueOf(rs.getString("booking_date"));
+                Date booking_date = rs.getDate("booking_date");
                 int days = rs.getInt("days");
                 String comment = rs.getString("comment");
-                boolean bookings_status = Boolean.parseBoolean(rs.getString("booking_status"));
+                boolean bookings_status = rs.getBoolean("booking_status");
                 int user_id = rs.getInt("user_id");
                 int equipment_id = rs.getInt("equipment_id");
-                bookingList.add(new Bookings(bookings_id,booking_date,days,comment,bookings_status,user_id,equipment_id));
+                bookingList.add(new Bookings(bookings_id, booking_date, days, comment, bookings_status, user_id, equipment_id));
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new DatabaseException("Fejl!!!!", e.getMessage());
         }
         return bookingList;
     }
+
+//
+//    public static List<Bookings> getAllBookings(ConnectionPool connectionPool) throws DatabaseException
+//    {
+//        List<Bookings> bookingList = new ArrayList<>();
+//        String sql = "select * from bookings order by user_id";
+//
+//        try (
+//                Connection connection = connectionPool.getConnection();
+//                PreparedStatement ps = connection.prepareStatement(sql)
+//        )
+//        {
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next())
+//            {
+//
+//                int bookings_id = rs.getInt("bookings_id");
+//                Date booking_date = Date.valueOf(rs.getString("booking_date"));
+//                int days = rs.getInt("days");
+//                String comment = rs.getString("comment");
+//                boolean bookings_status = Boolean.parseBoolean(rs.getString("booking_status"));
+//                int user_id = rs.getInt("user_id");
+//                int equipment_id = rs.getInt("equipment_id");
+//                bookingList.add(new Bookings(bookings_id,booking_date,days,comment,bookings_status,user_id,equipment_id));
+//            }
+//        }
+//        catch (SQLException e)
+//        {
+//            throw new DatabaseException("Fejl!!!!", e.getMessage());
+//        }
+//        return bookingList;
+//    }
 
 }
 
