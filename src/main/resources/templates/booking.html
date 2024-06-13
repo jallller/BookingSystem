@@ -39,8 +39,53 @@
 
 <div class="containercolumns">
     <!-- Left Column with Login Form change form action -->
+    <table>
+        <thead>
+        <tr>
+            <th>Bruger id</th>
+            <th>Booking id</th>
+            <th>Bookings dato</th>
+            <th>Antal dage</th>
+            <th>Kommentar</th>
+            <th>Booking status</th>
+            <th>Udstyr id</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking: ${bookingsList}">
+            <td th:text="${booking.user_id}"></td>
+            <td th:text="${booking.bookings_id}"></td>
+            <td th:text="${booking.booking_date}"></td>
+            <td th:text="${booking.days}"></td>
+            <td th:text="${booking.comment}"></td>
+            <td th:text="${booking.booking_status}"></td>
+            <td th:text="${booking.equipment_id}"></td>
+        </tr>
+        </tbody>
+    </table>
 
     <div class="column left">
+
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>User Email</th>-->
+<!--                <th>User id</th>-->
+<!--                <th>Navn</th>-->
+<!--                <th>Telefon</th>-->
+<!--                <th>Rolle</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="user: ${userList}">-->
+<!--                <td th:text="${user.user_id}"></td>-->
+<!--                <td th:text="${user.email}"></td>-->
+<!--                <td th:text="${user.name}"></td>-->
+<!--                <td th:text="${user.phone}"></td>-->
+<!--                <td th:text="${user.roles}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
 
         <form method="post" class="booking-form">
             <div class="form-group">
@@ -52,7 +97,7 @@
                 <option th:each="equipment : ${equipmentList}"
                         th:value="${equipment.equipment_id}"
                         th:text="${' Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">
-<!--                        th:text="${'ID: ' + equipment.equipment_id + ', Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">-->
+                    <!--                        th:text="${'ID: ' + equipment.equipment_id + ', Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">-->
                 </option>
             </select></div>
             <br>
@@ -79,25 +124,25 @@
     <!--    </div>-->
 
     <div class="column middle">
-        <h3>Some text</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.</p>
+<!--        <h3>Some text</h3>-->
+<!--        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
+<!--            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and-->
+<!--            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into-->
+<!--            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of-->
+<!--            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like-->
+<!--            Aldus PageMaker including versions of Lorem Ipsum.-->
+<!--            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
+<!--            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and-->
+<!--            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into-->
+<!--            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of-->
+<!--            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like-->
+<!--            Aldus PageMaker including versions of Lorem Ipsum.-->
+<!--            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
+<!--            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and-->
+<!--            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into-->
+<!--            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of-->
+<!--            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like-->
+<!--            Aldus PageMaker including versions of Lorem Ipsum.</p>-->
     </div>
 
     <div class="column right">

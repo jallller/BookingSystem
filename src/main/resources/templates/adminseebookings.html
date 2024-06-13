@@ -50,6 +50,11 @@
             <button type="button" class="adminbuttons">Brugere</button>
         </a>
     </form>
+    <form class="adminbuttons" method="get">
+        <a href="admin.html">
+            <button type="button" class="adminbuttons">Adminside</button>
+        </a>
+    </form>
 </div>
 
 <div class="containercolumns">
@@ -80,7 +85,30 @@
     </div>
 
     <div class="column middle">
-
+        <table>
+            <thead>
+            <tr>
+                <th>Bruger id</th>
+                <th>Booking id</th>
+                <th>Bookings dato</th>
+                <th>Antal dage</th>
+                <th>Kommentar</th>
+                <th>Booking status</th>
+                <th>Udstyr id</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="booking: ${bookingsList}">
+                <td th:text="${booking.user_id}"></td>
+                <td th:text="${booking.bookings_id}"></td>
+                <td th:text="${booking.booking_date}"></td>
+                <td th:text="${booking.days}"></td>
+                <td th:text="${booking.comment}"></td>
+                <td th:text="${booking.booking_status}"></td>
+                <td th:text="${booking.equipment_id}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 

@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Ignore JVM crash and replay logs
+hs_err_pid*.log
+replay_pid*.log

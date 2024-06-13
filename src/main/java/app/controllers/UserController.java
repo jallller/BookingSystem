@@ -20,6 +20,10 @@ import java.util.List;
 public class UserController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+
+        app.get("adminseeequipment.html", ctx -> ctx.render("adminseeequipment.html"));
+        app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
+        app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
         app.post("login", ctx -> login(ctx, connectionPool));
         app.get("logout", ctx -> logout(ctx));
 //        app.post("login", ctx -> UserController.login(ctx));
@@ -31,13 +35,14 @@ public class UserController {
 //        app.post("createuser", ctx -> createUser(ctx, connectionPool));
         //app.post("getAllUsers", ctx -> getAllUsers(ctx, connectionPool));
 //        app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
-        app.get("adminseeequipment.html", ctx -> ctx.render("adminseeequipment.html"));
-        app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
-        app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
+//        app.get("adminseeequipment.html", ctx -> ctx.render("adminseeequipment.html"));
+//        app.get("adminSeeStudents.html", ctx -> ctx.render("adminSeeStudents.html"));
+//        app.get("adminseebookings.html", ctx -> ctx.render("adminseebookings.html"));
         app.get("account.html", ctx -> ctx.render("account.html"));
         app.post("createuser", ctx -> createUser(ctx, connectionPool));
 //        app.post("createuser", ctx -> getAllUsers(ctx, connectionPool));
         app.get("createuser.html", ctx -> ctx.render("createuser.html"));
+        app.get("admin.html", ctx -> ctx.render("admin.html"));
 
 
     }
@@ -85,14 +90,23 @@ public class UserController {
 
             User user = UserMapper.login(email, password, connectionPool);
             ctx.sessionAttribute("currentUser", user);
+
             List <User> userList = UserMapper.getAllUsers(connectionPool);
             ctx.attribute("userList", userList);
 
             List <Equipment> equipmentList = EquipmentMapper.getAllEquipment(connectionPool);
             ctx.attribute("equipmentList", equipmentList);
 
-            List <Room> roomList = EquipmentMapper.getAllRooms(connectionPool);
-            ctx.attribute("roomList", roomList);
+            List <Bookings> bookingsList = BookingsMapper.getAllBookings(connectionPool);
+            ctx.attribute("bookingsList", bookingsList);
+
+            BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
+
+//            BookingsMapper.addBookings(connectionPool);
+
+//
+//            List <Room> roomList = EquipmentMapper.getAllRooms(connectionPool);
+//            ctx.attribute("roomList", roomList);
 
 //            List <Room> roomList = RoomMapper.getAllRoom(connectionPool);
 //            ctx.attribute("roomList", roomList);

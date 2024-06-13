@@ -284,6 +284,9 @@ h1 {
 /* Body styling */
 body {
     margin: 0 !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .d-flex {
@@ -297,6 +300,7 @@ body {
 
 /* Footer styling */
 .footer-container {
+    margin-top: auto;
     display: flex;
     position: fixed; /* Position the footer at the bottom of the viewport */
     bottom: 0;
