@@ -13,10 +13,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+//import static app.persistence.BookingsMapper.totalDaysOnLoan;
+
 public class BookingsController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
         app.post("createbooking", ctx -> addBooking(ctx, connectionPool));
 //        app.post("onloan", ctx -> onloan(ctx, connectionPool));
+//        app.get("loanDaysPerEquipment", ctx -> totalDaysOnLoan(ctx, connectionPool));
+
     }
 //
 //    private static void onloan(Context ctx, ConnectionPool connectionPool) {

@@ -6,7 +6,9 @@ import app.exceptions.DatabaseException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BookingsMapper {
 
@@ -90,7 +92,25 @@ public class BookingsMapper {
         return bookingList;
     }
 
-    public int daysPer
+//    public static Map<Integer, Integer> totalDaysOnLoan (ConnectionPool connectionPool) throws DatabaseException {
+//        Map<Integer, Integer> equipmentLoanDays = new HashMap<>();
+//        String sql = "SELECT equipment_id, SUM(days) AS total_days FROM bookings WHERE booking_status = TRUE GROUP BY equipment_id";
+//
+//        try (
+//                Connection connection = connectionPool.getConnection();
+//                PreparedStatement ps = connection.prepareStatement(sql)
+//        ) {
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                int equipment_id = rs.getInt("equipment_id");
+//                int total_days = rs.getInt("total_days");
+//                equipmentLoanDays.put(equipment_id, total_days);
+//            }
+//        } catch (SQLException e) {
+//            throw new DatabaseException("Error while fetching total loan days per equipment", e.getMessage());
+//        }
+//        return equipmentLoanDays;
+//    }
 
 //    public static void setOnLoanTo(boolean b, int bookingsId, ConnectionPool connectionPool) {
 //
