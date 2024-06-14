@@ -16,7 +16,52 @@ import java.util.List;
 public class BookingsController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
         app.post("createbooking", ctx -> addBooking(ctx, connectionPool));
+//        app.post("onloan", ctx -> onloan(ctx, connectionPool));
     }
+//
+//    private static void onloan(Context ctx, ConnectionPool connectionPool) {
+//
+//        User user = ctx.sessionAttribute("currentUser");
+//
+//        int bookings_id = Integer.parseInt(ctx.formParam("bookings_id"));
+//        BookingsMapper.setOnLoanTo(true, bookings_id, connectionPool);
+//        List<Bookings> bookingsList = null;
+//        try {
+//            bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(), connectionPool);
+//        } catch (DatabaseException e) {
+//            throw new RuntimeException(e);
+//        }
+//        ctx.attribute("bookingsList", bookingsList);
+//        ctx.render("booking.html");
+//
+//    }
+//
+//    private static void onloan(Context ctx, ConnectionPool connectionPool) {
+//        User user = ctx.sessionAttribute("currentUser");
+//        int bookings_id = Integer.parseInt(ctx.formParam("bookings_id"));
+//
+//        try {
+//            // Retrieve the current booking
+//            Bookings booking = BookingsMapper.getBookingById(bookings_id, connectionPool);
+//
+//            if (booking != null) {
+//                // Flip the onLoan status
+//                boolean newOnLoanStatus = !booking.isBooking_status();
+//                BookingsMapper.setOnLoanTo(newOnLoanStatus, bookings_id, connectionPool);
+//
+//                // Retrieve updated list of bookings for the user
+//                List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(), connectionPool);
+//                ctx.attribute("bookingsList", bookingsList);
+//            } else {
+//                ctx.attribute("message", "Booking not found.");
+//            }
+//
+//        } catch (DatabaseException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        ctx.render("booking.html");
+//    }
 
     private static void addBooking(Context ctx, ConnectionPool connectionPool) {
         String bookingDateStr = ctx.formParam("booking_date");

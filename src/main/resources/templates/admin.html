@@ -1,3 +1,209 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--    <title>Admin</title>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link href="../public/css/styless.css" th:href="@{/css/styles.css}" rel="stylesheet"/>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            min-height: 100vh;-->
+<!--            margin: 0;-->
+<!--        }-->
+<!--        .containercolumns {-->
+<!--            flex: 1;-->
+<!--        }-->
+<!--        footer {-->
+<!--            background: #f1f1f1;-->
+<!--            padding: 20px;-->
+<!--            text-align: center;-->
+<!--            margin-top: auto;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<header>-->
+<!--    <div class="logocontainer">-->
+<!--        <a href="frontpage.html" th:href="@{/}">-->
+<!--            <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>-->
+<!--        </a>-->
+<!--    </div>-->
+
+<!--    <div class="nav-links">-->
+<!--        <form class="accountbuttons">-->
+<!--            <a>-->
+<!--                <p th:if="${session.currentUser !=null}">-->
+<!--                    <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log-->
+<!--                        ud</a></button>-->
+<!--                </p>-->
+<!--            </a></form>-->
+<!--        <form class="accountbuttons" method="get">-->
+<!--            <a href="account.html">-->
+<!--                <button type="button" class="accountbuttons">Konto</button>-->
+<!--            </a>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</header>-->
+
+<!--<h1>Velkommen til adminsiden <span th:text="${session.currentUser.email}"></span></h1>-->
+
+<!--<div class="containercolumns">-->
+<!--    &lt;!&ndash; Left Column with Images &ndash;&gt;-->
+<!--    <div class="column left">-->
+<!--        <div class="image-container">-->
+<!--            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>-->
+<!--            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="75%" alt="Makerlab"/>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Middle Column with Admin Buttons &ndash;&gt;-->
+<!--    <div class="column middle">-->
+<!--        <div class="adminbuttons_centered">-->
+<!--            <form class="adminbuttons" method="get">-->
+<!--                <a href="adminseebookings.html">-->
+<!--                    <button type="button" class="adminbuttons">Bookinger</button>-->
+<!--                </a>-->
+<!--            </form>-->
+<!--            <br><br>-->
+<!--            <form class="adminbuttons" method="get">-->
+<!--                <a href="adminseeequipment.html">-->
+<!--                    <button type="button" class="adminbuttons">Udstyr</button>-->
+<!--                </a>-->
+<!--            </form>-->
+<!--            <br><br>-->
+<!--            <form class="adminbuttons" method="get">-->
+<!--                <a href="adminSeeStudents.html">-->
+<!--                    <button type="button" class="adminbuttons">Brugere</button>-->
+<!--                </a>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <form method="post">-->
+<!--        <input type="text" name="bookingName" placeholder="Enter your booking"/>-->
+<!--        <button type="submit" formaction="addBooking">Add</button>-->
+<!--    </form>-->
+
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>User Email</th>-->
+<!--            <th>User id</th>-->
+<!--            <th>Navn</th>-->
+<!--            <th>Telefon</th>-->
+<!--            <th>Rolle</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="user: ${userList}">-->
+<!--            <td th:text="${user.user_id}"></td>-->
+<!--            <td th:text="${user.email}"></td>-->
+<!--            <td th:text="${user.name}"></td>-->
+<!--            <td th:text="${user.phone}"></td>-->
+<!--            <td th:text="${user.roles}"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    <br><br>-->
+<!--    <div>-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>User Email</th>-->
+<!--                <th>User id</th>-->
+<!--                <th>Navn</th>-->
+<!--                <th>Telefon</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="equipment: ${equipmentList}">-->
+<!--                <td th:text="${equipment.equipment_id}"></td>-->
+<!--                <td th:text="${equipment.equipment_name}"></td>-->
+<!--                <td th:text="${equipment.description}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>User Email</th>-->
+<!--                <th>User id</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="room: ${roomList}">-->
+<!--                <td th:text="${room.room_number}"></td>-->
+<!--                <td th:text="${room.description}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>Bookings id</th>-->
+<!--                <th>Bookings dato</th>-->
+<!--                <th>Bookings Dage</th>-->
+<!--                <th>Bookings Kommentar</th>-->
+<!--                <th>Bookings Bookings status</th>-->
+<!--                <th>Bookings Bookings user_id</th>-->
+<!--                <th>Bookings Bookings equipment_id</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="booking: ${bookingsList}">-->
+<!--                <td th:text="${booking.bookings_id}"></td>-->
+<!--                <td th:text="${booking.booking_date}"></td>-->
+<!--                <td th:text="${booking.days}"></td>-->
+<!--                <td th:text="${booking.comment}"></td>-->
+<!--                <td th:text="${booking.booking_status}"></td>-->
+<!--                <td th:text="${booking.user_id}"></td>-->
+<!--                <td th:text="${booking.equipment_id}"></td>-->
+
+<!--                <button type="submit" name="booking_id" th:value="booking.bookings_id" formaction="onloan">Udlånt</button>-->
+<!--&lt;!&ndash;                <button type="submit" formaction="on loan">Rediger</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                <button type="submit" formaction="onloan">Slet</button>&ndash;&gt;-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+<!--    <div class="column right">-->
+<!--        <div class="image-container">-->
+<!--            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>-->
+<!--            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="75%" alt="Makerlab"/>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<br><br><br><br>-->
+
+<!--<footer class="footer-container">-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Sociale medier</h3>-->
+<!--        <p><a href="https://www.facebook.com/copenhagenbusinessacademy">Facebook</a></p>-->
+<!--        <p><a href="https://www.instagram.com/cphbusiness/">Instagram</a></p>-->
+<!--    </div>-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Kontakt:</h3>-->
+<!--        <p>Hjælp : kontakt@cphbusiness.dk</p>-->
+<!--        <p>It hjælp : helpdesk@cphbusiness.dk</p>-->
+<!--    </div>-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Adresse</h3>-->
+<!--        <p>Firskovvej 18 2800Kongens Lyngby</p>-->
+<!--        <p>Mandag-torsdag 8.00 - 15.30</p>-->
+<!--    </div>-->
+<!--</footer>-->
+
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
@@ -15,12 +221,44 @@
         }
         .containercolumns {
             flex: 1;
+            display: flex;
+            flex-direction: row;
         }
         footer {
             background: #f1f1f1;
             padding: 20px;
             text-align: center;
             margin-top: auto;
+        }
+        .column {
+            flex: 1;
+            padding: 20px;
+        }
+        .left, .right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-container img {
+            margin-bottom: 20px;
+        }
+        .adminbuttons_centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .adminbuttons {
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
     </style>
 </head>
@@ -32,15 +270,14 @@
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-
     <div class="nav-links">
         <form class="accountbuttons">
-            <a>
-                <p th:if="${session.currentUser !=null}">
-                    <button type="button" class="accountbuttons"><a href="frontpage.html" th:href="@{/logout}">Log
-                        ud</a></button>
-                </p>
-            </a></form>
+            <p th:if="${session.currentUser != null}">
+                <button type="button" class="accountbuttons">
+                    <a href="frontpage.html" th:href="@{/logout}">Log ud</a>
+                </button>
+            </p>
+        </form>
         <form class="accountbuttons" method="get">
             <a href="account.html">
                 <button type="button" class="accountbuttons">Konto</button>
@@ -68,13 +305,11 @@
                     <button type="button" class="adminbuttons">Bookinger</button>
                 </a>
             </form>
-            <br><br>
             <form class="adminbuttons" method="get">
                 <a href="adminseeequipment.html">
                     <button type="button" class="adminbuttons">Udstyr</button>
                 </a>
             </form>
-            <br><br>
             <form class="adminbuttons" method="get">
                 <a href="adminSeeStudents.html">
                     <button type="button" class="adminbuttons">Brugere</button>
@@ -83,41 +318,50 @@
         </div>
     </div>
 
-    <form method="post">
-        <input type="text" name="bookingName" placeholder="Enter your booking"/>
-        <button type="submit" formaction="addBooking">Add</button>
-    </form>
+    <!-- Form for Adding Booking -->
+<!--    <div class="column middle">-->
+<!--        <form method="post" th:action="@{/createbooking}">-->
+<!--            <input type="text" name="booking_date" placeholder="Enter booking date (yyyy-MM-dd)" required/>-->
+<!--            <select name="days" required>-->
+<!--                <option value="" disabled selected>Select days</option>-->
+<!--                <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"></option>-->
+<!--            </select>-->
+<!--            <input type="text" name="comment" placeholder="Enter comment" required/>-->
+<!--            <input type="text" name="equipment_id" placeholder="Enter equipment ID" required/>-->
+<!--            <button type="submit">Add Booking</button>-->
+<!--        </form>-->
+<!--    </div>-->
 
-    <table>
-        <thead>
-        <tr>
-            <th>User Email</th>
-            <th>User id</th>
-            <th>Navn</th>
-            <th>Telefon</th>
-            <th>Rolle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user: ${userList}">
-            <td th:text="${user.user_id}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.phone}"></td>
-            <td th:text="${user.roles}"></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-    <div>
+    <!-- Table of Users -->
+    <div class="column right">
         <table>
             <thead>
             <tr>
                 <th>User Email</th>
-                <th>User id</th>
+                <th>User ID</th>
                 <th>Navn</th>
                 <th>Telefon</th>
+                <th>Rolle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${userList}">
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.user_id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.roles}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Table of Equipment -->
+        <table>
+            <thead>
+            <tr>
+                <th>Equipment ID</th>
+                <th>Equipment Name</th>
+                <th>Description</th>
             </tr>
             </thead>
             <tbody>
@@ -129,11 +373,12 @@
             </tbody>
         </table>
 
+        <!-- Table of Rooms -->
         <table>
             <thead>
             <tr>
-                <th>User Email</th>
-                <th>User id</th>
+                <th>Room Number</th>
+                <th>Description</th>
             </tr>
             </thead>
             <tbody>
@@ -144,16 +389,17 @@
             </tbody>
         </table>
 
+        <!-- Table of Bookings -->
         <table>
             <thead>
             <tr>
-                <th>Bookings id</th>
-                <th>Bookings dato</th>
-                <th>Bookings Dage</th>
-                <th>Bookings Kommentar</th>
-                <th>Bookings Bookings status</th>
-                <th>Bookings Bookings user_id</th>
-                <th>Bookings Bookings equipment_id</th>
+                <th>Bookings ID</th>
+                <th>Bookings Date</th>
+                <th>Days</th>
+                <th>Comment</th>
+                <th>Status</th>
+                <th>User ID</th>
+                <th>Equipment ID</th>
             </tr>
             </thead>
             <tbody>
@@ -165,19 +411,17 @@
                 <td th:text="${booking.booking_status}"></td>
                 <td th:text="${booking.user_id}"></td>
                 <td th:text="${booking.equipment_id}"></td>
+                <td>
+                    <form method="post" th:action="@{/onloan}">
+                        <input type="hidden" name="bookings_id" th:value="${booking.bookings_id}"/>
+                        <button type="submit">Udlånt</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="column right">
-        <div class="image-container">
-            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>
-            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="75%" alt="Makerlab"/>
-        </div>
-    </div>
 </div>
-
-<br><br><br><br>
 
 <footer class="footer-container">
     <div class="footer-column">
@@ -187,15 +431,259 @@
     </div>
     <div class="footer-column">
         <h3>Kontakt:</h3>
-        <p>Hjælp : kontakt@cphbusiness.dk</p>
-        <p>It hjælp : helpdesk@cphbusiness.dk</p>
+        <p>Hjælp: kontakt@cphbusiness.dk</p>
+        <p>IT hjælp: helpdesk@cphbusiness.dk</p>
     </div>
     <div class="footer-column">
         <h3>Adresse</h3>
-        <p>Firskovvej 18 2800Kongens Lyngby</p>
+        <p>Firskovvej 18 2800 Kongens Lyngby</p>
         <p>Mandag-torsdag 8.00 - 15.30</p>
     </div>
 </footer>
 
 </body>
 </html>
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--    <title>Admin</title>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link href="../public/css/styless.css" th:href="@{/css/styles.css}" rel="stylesheet"/>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            min-height: 100vh;-->
+<!--            margin: 0;-->
+<!--        }-->
+<!--        .containercolumns {-->
+<!--            flex: 1;-->
+<!--            display: flex;-->
+<!--            flex-direction: row;-->
+<!--        }-->
+<!--        footer {-->
+<!--            background: #f1f1f1;-->
+<!--            padding: 20px;-->
+<!--            text-align: center;-->
+<!--            margin-top: auto;-->
+<!--        }-->
+<!--        .column {-->
+<!--            flex: 1;-->
+<!--            padding: 20px;-->
+<!--        }-->
+<!--        .left, .right {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--        }-->
+<!--        .image-container img {-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+<!--        .adminbuttons_centered {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--        }-->
+<!--        .adminbuttons {-->
+<!--            margin: 10px 0;-->
+<!--        }-->
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+<!--        th, td {-->
+<!--            border: 1px solid #ddd;-->
+<!--            padding: 8px;-->
+<!--            text-align: left;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<header>-->
+<!--    <div class="logocontainer">-->
+<!--        <a href="frontpage.html" th:href="@{/}">-->
+<!--            <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="nav-links">-->
+<!--        <form class="accountbuttons">-->
+<!--            <p th:if="${session.currentUser != null}">-->
+<!--                <button type="button" class="accountbuttons">-->
+<!--                    <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
+<!--                </button>-->
+<!--            </p>-->
+<!--        </form>-->
+<!--        <form class="accountbuttons" method="get">-->
+<!--            <a href="account.html">-->
+<!--                <button type="button" class="accountbuttons">Konto</button>-->
+<!--            </a>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</header>-->
+
+<!--<h1>Velkommen til adminsiden <span th:text="${session.currentUser.email}"></span></h1>-->
+
+<!--<div class="containercolumns">-->
+<!--    &lt;!&ndash; Left Column with Images &ndash;&gt;-->
+<!--    <div class="column left">-->
+<!--        <div class="image-container">-->
+<!--            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>-->
+<!--            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="75%" alt="Makerlab"/>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Middle Column with Admin Buttons &ndash;&gt;-->
+<!--    <div class="column middle">-->
+<!--        <div class="adminbuttons_centered">-->
+<!--            <form class="adminbuttons" method="get">-->
+<!--                <a href="adminseebookings.html">-->
+<!--                    <button type="button" class="adminbuttons">Bookinger</button>-->
+<!--                </a>-->
+<!--            </form>-->
+<!--            <form class="adminbuttons" method="get">-->
+<!--                <a href="adminseeequipment.html">-->
+<!--                    <button type="button" class="adminbuttons">Udstyr</button>-->
+<!--                </a>-->
+<!--            </form>-->
+<!--            <form class="adminbuttons" method="get">-->
+<!--                <a href="adminSeeStudents.html">-->
+<!--                    <button type="button" class="adminbuttons">Brugere</button>-->
+<!--                </a>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Form for Adding Booking &ndash;&gt;-->
+<!--    <div class="column middle">-->
+<!--        <form method="post" th:action="@{/createbooking}">-->
+<!--            <input type="text" name="booking_date" placeholder="Enter booking date (yyyy-MM-dd)" required/>-->
+<!--            <select name="days" required>-->
+<!--                <option value="" disabled selected>Select days</option>-->
+<!--                <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"></option>-->
+<!--            </select>-->
+<!--            <input type="text" name="comment" placeholder="Enter comment" required/>-->
+<!--            <input type="text" name="equipment_id" placeholder="Enter equipment ID" required/>-->
+<!--            <button type="submit">Add Booking</button>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Table of Users &ndash;&gt;-->
+<!--    <div class="column right">-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>User Email</th>-->
+<!--                <th>User ID</th>-->
+<!--                <th>Navn</th>-->
+<!--                <th>Telefon</th>-->
+<!--                <th>Rolle</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="user: ${userList}">-->
+<!--                <td th:text="${user.email}"></td>-->
+<!--                <td th:text="${user.user_id}"></td>-->
+<!--                <td th:text="${user.name}"></td>-->
+<!--                <td th:text="${user.phone}"></td>-->
+<!--                <td th:text="${user.roles}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+<!--        &lt;!&ndash; Table of Equipment &ndash;&gt;-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>Equipment ID</th>-->
+<!--                <th>Equipment Name</th>-->
+<!--                <th>Description</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="equipment: ${equipmentList}">-->
+<!--                <td th:text="${equipment.equipment_id}"></td>-->
+<!--                <td th:text="${equipment.equipment_name}"></td>-->
+<!--                <td th:text="${equipment.description}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+<!--        &lt;!&ndash; Table of Rooms &ndash;&gt;-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>Room Number</th>-->
+<!--                <th>Description</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="room: ${roomList}">-->
+<!--                <td th:text="${room.room_number}"></td>-->
+<!--                <td th:text="${room.description}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+<!--        &lt;!&ndash; Table of Bookings &ndash;&gt;-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>Bookings ID</th>-->
+<!--                <th>Bookings Date</th>-->
+<!--                <th>Days</th>-->
+<!--                <th>Comment</th>-->
+<!--                <th>Status</th>-->
+<!--                <th>User ID</th>-->
+<!--                <th>Equipment ID</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="booking: ${bookingsList}">-->
+<!--                <td th:text="${booking.bookings_id}"></td>-->
+<!--                <td th:text="${booking.booking_date}"></td>-->
+<!--                <td th:text="${booking.days}"></td>-->
+<!--                <td th:text="${booking.comment}"></td>-->
+<!--                <td th:text="${booking.booking_status}"></td>-->
+<!--                <td th:text="${booking.user_id}"></td>-->
+<!--                <td th:text="${booking.equipment_id}"></td>-->
+<!--                <td>-->
+<!--                    <form method="post" th:action="@{/onloan}">-->
+<!--                        <input type="hidden" name="bookings_id" th:value="${booking.bookings_id}"/>-->
+<!--                        <button type="submit">Udlånt</button>-->
+<!--                    </form>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<footer class="footer-container">-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Sociale medier</h3>-->
+<!--        <p><a href="https://www.facebook.com/copenhagenbusinessacademy">Facebook</a></p>-->
+<!--        <p><a href="https://www.instagram.com/cphbusiness/">Instagram</a></p>-->
+<!--    </div>-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Kontakt:</h3>-->
+<!--        <p>Hjælp: kontakt@cphbusiness.dk</p>-->
+<!--        <p>IT hjælp: helpdesk@cphbusiness.dk</p>-->
+<!--    </div>-->
+<!--    <div class="footer-column">-->
+<!--        <h3>Adresse</h3>-->
+<!--        <p>Firskovvej 18 2800 Kongens Lyngby</p>-->
+<!--        <p>Mandag-torsdag 8.00 - 15.30</p>-->
+<!--    </div>-->
+<!--</footer>-->
+
+<!--</body>-->
+<!--</html>-->
+

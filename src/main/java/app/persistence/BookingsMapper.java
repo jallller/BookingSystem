@@ -67,7 +67,7 @@ public class BookingsMapper {
 
     public static List<Bookings> getAllBookings(ConnectionPool connectionPool) throws DatabaseException {
         List<Bookings> bookingList = new ArrayList<>();
-        String sql = "select * from bookings order by user_id";
+        String sql = "select * from bookings order by booking_date";
 
         try (
                 Connection connection = connectionPool.getConnection();
@@ -89,6 +89,12 @@ public class BookingsMapper {
         }
         return bookingList;
     }
+
+    public int daysPer
+
+//    public static void setOnLoanTo(boolean b, int bookingsId, ConnectionPool connectionPool) {
+//
+//    }
 
 //
 //    public static List<Bookings> getAllBookings(ConnectionPool connectionPool) throws DatabaseException
