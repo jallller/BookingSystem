@@ -14,6 +14,7 @@ import app.persistence.EquipmentMapper;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import app.entities.User;
 
 import java.util.List;
 
@@ -43,8 +44,70 @@ public class UserController {
 //        app.post("createuser", ctx -> getAllUsers(ctx, connectionPool));
         app.get("createuser.html", ctx -> ctx.render("createuser.html"));
         app.get("admin.html", ctx -> ctx.render("admin.html"));
+        app.post("/updatePassword", ctx -> updatePassword(ctx, connectionPool));
+        app.post("/updatePhone", ctx -> updatePhone(ctx, connectionPool));
 
+//        app.get("/admin", ctx -> {
+//            ctx.render("admin.html");
+//        });
+//
+//// Route for viewing students
+//        app.get("/adminseestudents", ctx -> {
+//            List<User> userList = UserMapper.getAllUsers(connectionPool);
+//            ctx.attribute("userList", userList);
+//            ctx.render("adminseestudents.html");
+//        });
+//
+//// Route for viewing equipment
+//        app.get("/adminseeequipment", ctx -> {
+//            List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(connectionPool);
+//            ctx.attribute("equipmentList", equipmentList);
+//            ctx.render("adminseeequipment.html");
+//        });
+//
+//// Route for viewing bookings
+//        app.get("/adminseebookings", ctx -> {
+//            List<Bookings> bookingsList = BookingsMapper.getAllBookings(ctx, connectionPool);
+//            ctx.attribute("bookingsList", bookingsList);
+//            ctx.render("adminseebookings.html");
+//
+//
+//    }
+    }
 
+    private static void updatePassword(Context ctx, ConnectionPool connectionPool) {
+//        String email = ctx.sessionAttribute("currentUser").getEmail();
+        String password = ctx.formParam("password");
+        String email = ctx.formParam("email");
+        String repeatPassword = ctx.formParam("repeatPassword");
+
+        if (password.equals(repeatPassword)) {
+            try {
+                UserMapper.updatePassword(email, password, connectionPool);
+                ctx.redirect("/account.html"); // Redirect to account page
+            } catch (DatabaseException e) {
+                ctx.attribute("message", "Failed to update password");
+                ctx.render("account.html");
+            }
+        } else {
+            ctx.attribute("message", "Passwords do not match");
+            ctx.render("account.html");
+        }
+    }
+
+    private static void updatePhone(Context ctx, ConnectionPool connectionPool) {
+//        String email = ctx.sessionAttribute("currentUser").getEmail();
+        String email = ctx.formParam("email");
+
+        String phone = ctx.formParam("phone");
+
+        try {
+            UserMapper.updatePhone(email, phone, connectionPool);
+            ctx.redirect("/account.html"); // Redirect to account page
+        } catch (DatabaseException e) {
+            ctx.attribute("message", "Failed to update phone number");
+            ctx.render("account.html");
+        }
     }
 
 
@@ -91,35 +154,24 @@ public class UserController {
             User user = UserMapper.login(email, password, connectionPool);
             ctx.sessionAttribute("currentUser", user);
 
-            List <User> userList = UserMapper.getAllUsers(connectionPool);
+            List<User> userList = UserMapper.getAllUsers(connectionPool);
             ctx.attribute("userList", userList);
+            //adminseestudents
 
-            List <Equipment> equipmentList = EquipmentMapper.getAllEquipment(connectionPool);
+
+            //adminSeeequipment
+            List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(connectionPool);
             ctx.attribute("equipmentList", equipmentList);
 
-            List <Bookings> bookingsList = BookingsMapper.getAllBookings(connectionPool);
+            //adminseebookings
+            List<Bookings> bookingsList = BookingsMapper.getAllBookings(ctx, connectionPool);
             ctx.attribute("bookingsList", bookingsList);
 //            ctx.render("booking.html");
 
-            BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
+            //adminseebookings
+            BookingsMapper.getAllBookingsPerUser(user.getUser_id(), connectionPool);
+            UserMapper.getAllUsers(connectionPool);
 
-//            BookingsMapper.addBookings(connectionPool);
-
-//
-//            List <Room> roomList = EquipmentMapper.getAllRooms(connectionPool);
-//            ctx.attribute("roomList", roomList);
-
-//            List <Room> roomList = RoomMapper.getAllRoom(connectionPool);
-//            ctx.attribute("roomList", roomList);
-
-
-//            List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
-//            ctx.attribute("bookingsList",bookingsList);
-
-//            List<User> userList = UserMapper.getAllUsers(user.getUser_id(), connectionPool);
-//            List<User> userList2 = UserMapper.getAllUsers2(connectionPool);
-//            List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(user.getUser_id(), connectionPool);
-//            ctx.attribute("equipmentList", equipmentList);
 
             ctx.sessionAttribute("currentUser", user);
             //Hvis ja send videre til bookingside
@@ -145,11 +197,10 @@ public class UserController {
         String password = ctx.formParam("password");
 
         try {
-            List<User> userList = UserMapper.getAllUsers(connectionPool);
 
             //Hvis ja send videre til bookingside
-            List <User> userList2 = UserMapper.getAllUsers(connectionPool);
-            ctx.attribute("userList2", userList2);
+            List<User> userList = UserMapper.getAllUsers(connectionPool);
+            ctx.attribute("userList", userList);
             ctx.render("adminSeeStudents.html");
 
         } catch (DatabaseException e) {
@@ -157,6 +208,8 @@ public class UserController {
             ctx.attribute("message", e.getMessage());
             ctx.render("adminSeeStudents.html");
         }
+
+
     }
 //
 //    public static void getAllEquipment(Context ctx, ConnectionPool connectionPool) {
@@ -217,5 +270,22 @@ public class UserController {
 //    }
 
 
+    //            BookingsMapper.addBookings(connectionPool);
+
+//
+//            List <Room> roomList = EquipmentMapper.getAllRooms(connectionPool);
+//            ctx.attribute("roomList", roomList);
+
+//            List <Room> roomList = RoomMapper.getAllRoom(connectionPool);
+//            ctx.attribute("roomList", roomList);
+
+
+//            List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(),connectionPool);
+//            ctx.attribute("bookingsList",bookingsList);
+
+//            List<User> userList = UserMapper.getAllUsers(user.getUser_id(), connectionPool);
+//            List<User> userList2 = UserMapper.getAllUsers2(connectionPool);
+//            List<Equipment> equipmentList = EquipmentMapper.getAllEquipment(user.getUser_id(), connectionPool);
+//            ctx.attribute("equipmentList", equipmentList);
 }
 

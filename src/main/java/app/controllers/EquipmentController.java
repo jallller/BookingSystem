@@ -24,6 +24,7 @@ public class EquipmentController {
         app.get("adminAddEquimentRoom.html", ctx -> ctx.render("adminAddEquimentRoom.html"));
         app.get("allEquipment", ctx -> getAllEquipment(ctx, connectionPool));
         app.get("allRooms", ctx -> getAllRooms(ctx, connectionPool));
+//        app.get("")
 
 
 

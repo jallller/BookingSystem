@@ -5,7 +5,90 @@
     <title>Account</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../public/css/styless.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styling the table */
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Adding some padding and spacing */
+        tbody tr th {
+            width: 30%;
+        }
+
+        tbody tr td {
+            width: 50%;
+        }
+
+        /* Adding some styles for table header and table data */
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: darkblue;
+            color: white;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            table {
+                width: 100%;
+            }
+
+            tbody tr th, tbody tr td {
+                display: block;
+                width: 100%;
+            }
+
+            tbody tr th {
+                text-align: right;
+                padding-right: 10px;
+            }
+
+            tbody tr td {
+                text-align: left;
+                padding-left: 10px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -15,11 +98,14 @@
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-    <div class="nav-links"> <!-- Moved nav-links to the right side -->
-        <p th:if="${session.currentUser !=null}">
-            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>
-        </p>
-        <p><span th:text="${session.currentUser.email}"></span></p>
+    <div class="nav-links">
+        <form class="accountbuttons">
+            <p th:if="${session.currentUser != null}">
+                <button type="button" class="accountbuttons">
+                    <a href="frontpage.html" th:href="@{/logout}">Log ud</a>
+                </button>
+            </p>
+        </form>
     </div>
 </header>
 
@@ -27,55 +113,27 @@
 
 <div class="containercolumns">
     <div class="column left">
-        <div class="image-container">
-            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="75%" alt="Students"/>
-            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="75%" alt="Makerlab"/>
-        </div>
+        <table>
+            <tbody>
+            <tr>
+                <th>Email</th>
+                <td><span th:text="${session.currentUser.email}"></span></td>
+            </tr>
+            <tr>
+                <th>Kodeord</th>
+                <td><span th:text="${session.currentUser.password}"></span></td>
+            </tr>
+            <tr>
+                <th>Navn</th>
+                <td><span th:text="${session.currentUser.name}"></span></td>
+            </tr>
+            <tr>
+                <th>Telefon</th>
+                <td><span th:text="${session.currentUser.phone}"></span></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-
-    <div class="column middle">
-        <div class="adminbuttons_centered">
-            <form method="post" class="login-form" , id="grey-box">
-                <input type="email" name="email" placeholder="Email"/><br>
-                <input type="password" name="password1" placeholder="Kodeord"/><br>
-                <input type="password" name="password2" placeholder="Gentag kodeord"/><br>
-                <input type="text" name="name" placeholder="Navn"/><br>
-                <input type="text" name="phone" placeholder="Telefonnr"/><br>
-                <input type="text" name="roles" placeholder="Rolle">
-            </form>
-
-
-        </div>
-    </div>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Email</th>
-            <th>Kodeord</th>
-            <th>Navn</th>
-            <th>Telefon</th>
-            <th>Kommentar</th>
-            <th>Booking status</th>
-            <th>Udstyr id</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="booking: ${bookingsList}">
-            <td>  <span th:text="${session.currentUser.email}"></span></td>
-            <td><span th:text="${session.currentUser.email}"></span></td>
-            <td> <span th:text="${session.currentUser.name}"></span>></td>
-            <td></td> <span th:text="${session.currentUser.phone}"></span></td>
-            <td></td> <span th:text="${session.currentUser.email}"></span></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <h1>Account<span th:text="${session.currentUser.email}"></span></h1>
-    <h1>Account<span th:text="${session.currentUser.password}"></span></h1>
-    <h1>Account<span th:text="${session.currentUser.name}"></span></h1>
-    <h1>Account<span th:text="${session.currentUser.phone}"></span></h1>
-    <h1>Account<span th:text="${session.currentUser.email}"></span></h1>
 
 
     <div class="column right">

@@ -266,3 +266,50 @@ body {
 .accountbuttons button:hover{
     background-color: #3e26de;
 }
+/* body {*/
+/*     display: flex;*/
+/*     flex-direction: column;*/
+/*     min-height: 100vh;*/
+/*     margin: 0;*/
+/* }*/
+/*.containercolumns {*/
+/*    flex: 1;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
+/*footer {*/
+/*    background: #f1f1f1;*/
+/*    padding: 20px;*/
+/*    text-align: center;*/
+/*    margin-top: auto;*/
+/*}*/
+/*.column {*/
+/*    flex: 1;*/
+/*    padding: 20px;*/
+/*}*/
+/*.left, .right {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
+/*.image-container img {*/
+/*    margin-bottom: 20px;*/
+/*}*/
+/*.adminbuttons_centered {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
+/*.adminbuttons {*/
+/*    margin: 10px 0;*/
+/*}*/
+/*table {*/
+/*    width: 100%;*/
+/*    border-collapse: collapse;*/
+/*    margin-top: 20px;*/
+/*}*/
+/*th, td {*/
+/*    border: 1px solid #ddd;*/
+/*    padding: 8px;*/
+/*    text-align: left;*/
+/*}*/

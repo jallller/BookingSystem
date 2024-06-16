@@ -3,6 +3,7 @@ package app.persistence;
 import app.entities.Bookings;
 import app.entities.User;
 import app.exceptions.DatabaseException;
+import io.javalin.http.Context;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class BookingsMapper {
                 Boolean bookings_status = rs.getBoolean("booking_status");
                 int equipment_id = rs.getInt("equipment_id");
                 bookingsList.add(new Bookings(id, bookings_date, days, comment, bookings_status, user_id, equipment_id));
+
             }
         } catch (SQLException e) {
             throw new DatabaseException("Fejl!!!!", e.getMessage());
@@ -67,7 +69,7 @@ public class BookingsMapper {
         return newBooking;
     }
 
-    public static List<Bookings> getAllBookings(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Bookings> getAllBookings(Context ctx,ConnectionPool connectionPool) throws DatabaseException {
         List<Bookings> bookingList = new ArrayList<>();
         String sql = "select * from bookings order by booking_date";
 
@@ -91,30 +93,6 @@ public class BookingsMapper {
         }
         return bookingList;
     }
-
-//    public static Map<Integer, Integer> totalDaysOnLoan (ConnectionPool connectionPool) throws DatabaseException {
-//        Map<Integer, Integer> equipmentLoanDays = new HashMap<>();
-//        String sql = "SELECT equipment_id, SUM(days) AS total_days FROM bookings WHERE booking_status = TRUE GROUP BY equipment_id";
-//
-//        try (
-//                Connection connection = connectionPool.getConnection();
-//                PreparedStatement ps = connection.prepareStatement(sql)
-//        ) {
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                int equipment_id = rs.getInt("equipment_id");
-//                int total_days = rs.getInt("total_days");
-//                equipmentLoanDays.put(equipment_id, total_days);
-//            }
-//        } catch (SQLException e) {
-//            throw new DatabaseException("Error while fetching total loan days per equipment", e.getMessage());
-//        }
-//        return equipmentLoanDays;
-//    }
-
-//    public static void setOnLoanTo(boolean b, int bookingsId, ConnectionPool connectionPool) {
-//
-//    }
 
 //
 //    public static List<Bookings> getAllBookings(ConnectionPool connectionPool) throws DatabaseException

@@ -140,7 +140,7 @@
                 <select id="days" name="days" required>
                     <option value="">Vælg antal dage:</option>
                     <!-- Options for days from 1 to 10 -->
-                    <option th:each="day : ${#numbers.sequence(1, 10)}" th:value="${day}" th:text="${day}"></option>
+                    <option th:each="day : ${#numbers.sequence(1, 14)}" th:value="${day}" th:text="${day}"></option>
                 </select>
             </div>
             <div class="form-group">

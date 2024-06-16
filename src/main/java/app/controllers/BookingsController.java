@@ -95,7 +95,7 @@ public class BookingsController {
         try {
             Bookings booking = new Bookings(0, bookingDate, days, comment, true, user.getUser_id(), equipmentId);
             BookingsMapper.addBookings(booking, connectionPool);
-            bookingsList = BookingsMapper.getAllBookings(connectionPool);
+            bookingsList = BookingsMapper.getAllBookings(ctx,connectionPool);
         } catch (DatabaseException e) {
             ctx.attribute("message", "An error occurred while creating the booking.");
             ctx.render("booking.html");
@@ -104,4 +104,9 @@ public class BookingsController {
         ctx.attribute("bookingsList", bookingsList);
         ctx.render("booking.html");
     }
+
+
 }
+
+
+

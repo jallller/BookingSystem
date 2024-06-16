@@ -47,6 +47,43 @@ public class UserMapper
         }
     }
 
+    public static void updatePassword(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
+    String sql = "UPDATE users SET password = ? WHERE email = ?";
+
+    try (
+            Connection connection = connectionPool.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)
+    ) {
+        ps.setString(1, password);
+        ps.setString(2, email);
+
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected != 1) {
+            throw new DatabaseException("Failed to update password");
+        }
+    } catch (SQLException e) {
+        throw new DatabaseException("Database error", e.getMessage());
+    }
+}
+
+    public static void updatePhone(String email, String phone, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE users SET phone = ? WHERE email = ?";
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)
+        ) {
+            ps.setString(1, phone);
+            ps.setString(2, email);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Failed to update phone number");
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Database error", e.getMessage());
+        }
+    }
 
     public static void createUser(String email, String password, String name, String phone, String roles, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "insert into users (email, password, name, phone, roles) values (?,?,?,?,?)";
@@ -74,7 +111,7 @@ public class UserMapper
     }
 
 
-    public static List<User> getAllUsers( ConnectionPool connectionPool) throws DatabaseException
+    public static List<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException
     {
         List<User> userList = new ArrayList<>();
         String sql = "select * from users order by email";
