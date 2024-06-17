@@ -22,23 +22,7 @@ public class BookingsController {
 //        app.get("loanDaysPerEquipment", ctx -> totalDaysOnLoan(ctx, connectionPool));
 
     }
-//
-//    private static void onloan(Context ctx, ConnectionPool connectionPool) {
-//
-//        User user = ctx.sessionAttribute("currentUser");
-//
-//        int bookings_id = Integer.parseInt(ctx.formParam("bookings_id"));
-//        BookingsMapper.setOnLoanTo(true, bookings_id, connectionPool);
-//        List<Bookings> bookingsList = null;
-//        try {
-//            bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(), connectionPool);
-//        } catch (DatabaseException e) {
-//            throw new RuntimeException(e);
-//        }
-//        ctx.attribute("bookingsList", bookingsList);
-//        ctx.render("booking.html");
-//
-//    }
+
 //
 //    private static void onloan(Context ctx, ConnectionPool connectionPool) {
 //        User user = ctx.sessionAttribute("currentUser");
@@ -49,11 +33,9 @@ public class BookingsController {
 //            Bookings booking = BookingsMapper.getBookingById(bookings_id, connectionPool);
 //
 //            if (booking != null) {
-//                // Flip the onLoan status
 //                boolean newOnLoanStatus = !booking.isBooking_status();
 //                BookingsMapper.setOnLoanTo(newOnLoanStatus, bookings_id, connectionPool);
-//
-//                // Retrieve updated list of bookings for the user
+
 //                List<Bookings> bookingsList = BookingsMapper.getAllBookingsPerUser(user.getUser_id(), connectionPool);
 //                ctx.attribute("bookingsList", bookingsList);
 //            } else {

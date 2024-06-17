@@ -15,12 +15,7 @@
             <img src="../public/images/logo.png" th:src="@{/images/logo.png}" width="20%" alt="logo"/>
         </a>
     </div>
-<!--    <div class="nav-links"> &lt;!&ndash; Moved nav-links to the right side &ndash;&gt;-->
-<!--        <p th:if="${session.currentUser !=null}">-->
-<!--            <a href="frontpage.html" th:href="@{/logout}">Log ud</a>-->
-<!--        </p>-->
-<!--        <p><span th:text="${session.currentUser.email}"></span></p>-->
-<!--    </div>-->
+
     <div class="nav-links">
         <form class="accountbuttons">
             <a><p th:if="${session.currentUser !=null}">

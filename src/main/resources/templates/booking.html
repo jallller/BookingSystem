@@ -34,11 +34,40 @@
 </header>
 
 
-<h1>Velkommen til cph business booking system</h1>
-
 
 <div class="containercolumns">
-    <!-- Left Column with Login Form change form action -->
+    <form method="post" class="booking-form" th:action="@{/createbooking}">
+        <div class="form-group">
+            <label for="date"><h3>Udlån:</h3></label>
+            <input type="date" id="date" name="booking_date" required>
+        </div>
+        <div class="form-group">
+            <label for="equipment_id">Vælg udstyr:</label>
+            <select id="equipment_id" name="equipment_id" required>
+                <option value="">Vælg udstyr:</option>
+                <!-- Iterate over equipmentList using Thymeleaf -->
+                <option th:each="equipment : ${equipmentList}" th:value="${equipment.equipment_id}">
+                    Name: <span th:text="${equipment.equipment_name}"></span>,
+                    Description: <span th:text="${equipment.description}"></span>
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="days">Antal dage:</label>
+            <select id="days" name="days" required>
+                <option value="">Vælg antal dage:</option>
+                <option th:each="day : ${#numbers.sequence(1, 14)}" th:value="${day}" th:text="${day}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="comment">Kommentar:</label>
+            <textarea id="comment" name="comment" placeholder="Kommentar"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="accountbuttons">Book</button>
+        </div>
+    </form>
     <table>
         <thead>
         <tr>
@@ -47,7 +76,6 @@
             <th>Bookings dato</th>
             <th>Antal dage</th>
             <th>Kommentar</th>
-            <th>Booking status</th>
             <th>Udstyr id</th>
         </tr>
         </thead>
@@ -58,151 +86,107 @@
             <td th:text="${booking.booking_date}"></td>
             <td th:text="${booking.days}"></td>
             <td th:text="${booking.comment}"></td>
-            <td th:text="${booking.booking_status}"></td>
             <td th:text="${booking.equipment_id}"></td>
-<!--            <td th:text="${user.user_email}"></td>-->
-<!--            <td th:text="${equipment.equipment_name}"></td>-->
         </tr>
         </tbody>
     </table>
 
+<!--    <div class="container">-->
+<!--        <div class="table-container">-->
+<!--            <div class="table-wrapper">-->
+<!--                <h2>Booking Table</h2>-->
+<!--                <table id="booking-table">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>Booking ID</th>-->
+<!--                        <th>Equipment</th>-->
+<!--                        <th>User</th>-->
+<!--                        <th>Start Date</th>-->
+<!--                        <th>End Date</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    &lt;!&ndash; Booking table rows go here &ndash;&gt;-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="table-wrapper">-->
+<!--                <h2>Equipment Table</h2>-->
+<!--                <table id="equipment-table">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>Equipment ID</th>-->
+<!--                        <th>Name</th>-->
+<!--                        <th>Category</th>-->
+<!--                        <th>Status</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    &lt;!&ndash; Equipment table rows go here &ndash;&gt;-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
     <div class="column left">
 
-<!--        <table>-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th>User Email</th>-->
-<!--                <th>User id</th>-->
-<!--                <th>Navn</th>-->
-<!--                <th>Telefon</th>-->
-<!--                <th>Rolle</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="user: ${userList}">-->
-<!--                <td th:text="${user.user_id}"></td>-->
-<!--                <td th:text="${user.email}"></td>-->
-<!--                <td th:text="${user.name}"></td>-->
-<!--                <td th:text="${user.phone}"></td>-->
-<!--                <td th:text="${user.roles}"></td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
 
-<!--        HEEEEEEEEEEEEEEEEEEER
-<form method="post" class="booking-form">-->
+<!--        <form method="post" class="booking-form" th:action="@{/createbooking}">-->
 <!--            <div class="form-group">-->
 <!--                <label for="date"><h3>Udlån:</h3></label>-->
-<!--                <input type="date" id="date" name="date">-->
+<!--                <input type="date" id="date" name="booking_date" required>-->
 <!--            </div>-->
-<!--            <div><select name="equipmentDropdown" id="equipmentDropdown">-->
-<!--                <option value="">Vælg udstyr:</option>-->
-<!--                <option th:each="equipment : ${equipmentList}"-->
-<!--                        th:value="${equipment.equipment_id}"-->
-<!--                        th:text="${' Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">-->
-<!--                    &lt;!&ndash;                        th:text="${'ID: ' + equipment.equipment_id + ', Name: ' + equipment.equipment_name + ', Description: ' + equipment.description}">&ndash;&gt;-->
-<!--                </option>-->
-<!--            </select></div>-->
-<!--            <br>-->
 <!--            <div class="form-group">-->
-<!--                <input type="text" id="days" name="days" placeholder="Antal dage">-->
+<!--                <label for="equipment_id">Vælg udstyr:</label>-->
+<!--                <select id="equipment_id" name="equipment_id" required>-->
+<!--                    <option value="">Vælg udstyr:</option>-->
+<!--                    &lt;!&ndash; Iterate over equipmentList using Thymeleaf &ndash;&gt;-->
+<!--                    <option th:each="equipment : ${equipmentList}" th:value="${equipment.equipment_id}">-->
+<!--                        Name: <span th:text="${equipment.equipment_name}"></span>,-->
+<!--                        Description: <span th:text="${equipment.description}"></span>-->
+<!--                    </option>-->
+<!--                </select>-->
 <!--            </div>-->
-<!--            <input type="text" id="comment" name="comment", placeholder="Kommentar"/>-->
+
 <!--            <div class="form-group">-->
-<!--                <button type="submit" formaction="/createbooking" class="accountbuttons">Book</button>-->
-<!--&lt;!&ndash;                <button type="submit" formaction="/createbooking" class="accountbuttons">Book</button>&ndash;&gt;-->
+<!--                <label for="days">Antal dage:</label>-->
+<!--                <select id="days" name="days" required>-->
+<!--                    <option value="">Vælg antal dage:</option>-->
+<!--                    <option th:each="day : ${#numbers.sequence(1, 14)}" th:value="${day}" th:text="${day}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="comment">Kommentar:</label>-->
+<!--                <textarea id="comment" name="comment" placeholder="Kommentar"></textarea>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <button type="submit" class="accountbuttons">Book</button>-->
 <!--            </div>-->
 <!--        </form>-->
 
-        <form method="post" class="booking-form" th:action="@{/createbooking}">
-            <div class="form-group">
-                <label for="date"><h3>Udlån:</h3></label>
-                <input type="date" id="date" name="booking_date" required>
-            </div>
-            <div class="form-group">
-                <label for="equipment_id">Vælg udstyr:</label>
-                <select id="equipment_id" name="equipment_id" required>
-                    <option value="">Vælg udstyr:</option>
-                    <!-- Iterate over equipmentList using Thymeleaf -->
-                    <option th:each="equipment : ${equipmentList}" th:value="${equipment.equipment_id}">
-                        Name: <span th:text="${equipment.equipment_name}"></span>,
-                        Description: <span th:text="${equipment.description}"></span>
-                    </option>
-                </select>
-            </div>
-<!--            <div class="form-group">-->
-<!--                <label for="days">Antal dage:</label>-->
-<!--                <input type="number" id="days" name="days" placeholder="Antal dage" required>-->
-<!--            </div>-->
-
-            <div class="form-group">
-                <label for="days">Antal dage:</label>
-                <select id="days" name="days" required>
-                    <option value="">Vælg antal dage:</option>
-                    <!-- Options for days from 1 to 10 -->
-                    <option th:each="day : ${#numbers.sequence(1, 14)}" th:value="${day}" th:text="${day}"></option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="comment">Kommentar:</label>
-                <textarea id="comment" name="comment" placeholder="Kommentar"></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="accountbuttons">Book</button>
-            </div>
-        </form>
-
-
 
     </div>
-
-    <!--    <div class="date-picker">-->
-    <!--        <div>-->
-    <!--            <label for="start-date">Start Date:</label>-->
-    <!--            <input type="date" id="start-date" name="start-date">-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--            <label for="end-date">End Date:</label>-->
-    <!--            <input type="date" id="end-date" name="end-date">-->
-    <!--        </div>-->
-    <!--    </div>-->
 
     <div class="column middle">
-<!--        <h3>Some text</h3>-->
-<!--        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
-<!--            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and-->
-<!--            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into-->
-<!--            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of-->
-<!--            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like-->
-<!--            Aldus PageMaker including versions of Lorem Ipsum.-->
-<!--            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
-<!--            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and-->
-<!--            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into-->
-<!--            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of-->
-<!--            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like-->
-<!--            Aldus PageMaker including versions of Lorem Ipsum.-->
-<!--            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
-<!--            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and-->
-<!--            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into-->
-<!--            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of-->
-<!--            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like-->
-<!--            Aldus PageMaker including versions of Lorem Ipsum.</p>-->
-    </div>
 
-    <div class="column right">
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/NpZ-MjUrvN0?start=5" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            <br><br>
-        </div>
-        <br><br>
-
-        <div class="image-container">
-            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="50%" alt="logo"/>
-            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="50%" alt="logo"/>
-        </div>
     </div>
+</div>
+<!--    <div class="column right">-->
+<!--        <div class="video-container">-->
+<!--            <iframe src="https://www.youtube.com/embed/NpZ-MjUrvN0?start=5" frameborder="0"-->
+<!--                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                    allowfullscreen></iframe>-->
+<!--            <br><br>-->
+<!--        </div>-->
+<!--        <br><br>-->
+
+<!--        <div class="image-container">-->
+<!--            <img src="../public/images/students.png" th:src="@{/images/students.png}" width="50%" alt="logo"/>-->
+<!--            <img src="../public/images/makerlab.png" th:src="@{/images/makerlab.png}" width="50%" alt="logo"/>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 
 
